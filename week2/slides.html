@@ -43,7 +43,7 @@
       border: 1px solid #ddd;
       padding: 20px;
       border-radius: 4px;
-      baclkground: #f9f9f9;
+      background: #f9f9f9;
     }
 
     /* --- Advanced "Terminal" Input Style --- */
@@ -121,9 +121,9 @@
       </section>
       <section>
         <section>
-          <h2>Let's Talk About a Nightmare</h2>
-          <p class="fragment fade-right">We've all been here:</p>
-          <ul style="color:#a58383">
+          <h2 class="r-fit-text">Let's Talk About a Nightmare</h2>
+          <p class="fragment fade-right" style="font-size: larger;">We've all been here:</p>
+          <ul style="color:#a58383" style="font-size: xx-large;">
             <li class="fragment fade-right">MyProject.js</li>
             <li class="fragment fade-right">MyProject_working.js</li>
             <li class="fragment fade-right">MyProject_backup_monday.js</li>
@@ -148,17 +148,19 @@
         </section>
       </section>
       <section>
-        <h2>Module 0: The Professional Toolkit Setup</h2>
+        <h2 class="r-fit-text">Module 0: <br> The Professional Toolkit Setup</h2>
       </section>
       <section>
         <section>
-          <h2>Acquiring Your Most Important Tool</h2>
-          <p>Before we can begin, we must acquire and configure our primary tool: <span>Git</span>. This is a one-time
+          <h2 class="r-fit-text">Acquiring Your Most Important Tool</h2>
+          <p style="font-size: xx-large;">Before we can begin, we must acquire and configure our primary tool:
+            <span>Git</span>. This is a one-time
             setup for your machine.
-            We will also introduce ourselves to Git so it knows who is writing the history.</p>
+            We will also introduce ourselves to Git so it knows who is writing the history.
+          </p>
         </section>
         <section>
-          <h4>Our Goal</h4>
+          <h3>Our Goal</h3>
           <ol>
             <li class="fragment fade-right">Install the Git software.</li>
             <li class="fragment fade-right">Verify that the installation was successful.</li>
@@ -168,7 +170,7 @@
       </section>
       <section>
         <section>
-          <h2>Git Installation on Linux</h2>
+          <h2 class="r-fit-text">Git Installation on Linux</h2>
           <p style="font-size: xx-large;">Linux makes this incredibly simple using its built-in package manager,
             <span>apt</span>
           </p>
@@ -177,7 +179,7 @@
             install software.
           </p>
 
-          <aside class="notes">
+          <aside class="notes" aria-label="notes">
             <p>Explain how Debian is built on top of Linux Kerner. Then Ubuntu extended Debian, and Linux Mint extends
               Ubuntu.</p>
           </aside>
@@ -210,7 +212,7 @@
           </ol>
         </section>
         <section>
-          <h5>Universal Verification & Configuration</h5>
+          <h5 class="r-fit-text">Universal Verification & Configuration</h5>
           <p class="fragment fade-right" style="font-size: xx-large;">This step confirms the installation and sets up
             your identity. It is mandatory.
           </p>
@@ -241,18 +243,18 @@
               </p>
               <pre>
   <code class="language-python" data-noescape>
-    # Use your actual name, in quotes
-    git config --global user.name "Your Name"
+  # Use your actual name, in quotes
+  git config --global user.name "Your Name"
 
-    # Use the email you signed up to GitHub with, in quotes
-    git config --global user.email "you@example.com"
+  # Use the email you signed up to GitHub with, in quotes
+  git config --global user.email "you@example.com"
   </code>
                 </pre>
             </li>
           </ol>
-          <ul class="fragment fade-right">
+          <ul class="fragment fade-right" style="font-size: xx-large;">
             <li>
-              <p style="font-size: xx-large;">
+              <p>
                 What is <span>--global</span>? This flag tells Git to write this configuration to a special file in your
                 user's home directory (e.g., <span>~/.gitconfig</span>).
                 This setting will apply to every single Git project on your computer. You only need to do this once.
@@ -262,7 +264,7 @@
         </section>
       </section>
       <section>
-        <h2 class="r-fit-text">Module 1: The "Why" - Ending the Chaos</h2>
+        <h2 class="r-fit-text">Module 1: <br>The "Why" - Ending the Chaos</h2>
       </section>
       <section>
         <section>
@@ -270,8 +272,8 @@
         </section>
         <section>
           <p><span>report_final.doc</span></p>
-          <p><span>report_final_v2_USE_THIS_ONE.doc</span></p>
-          <p><span>report_final_v3_janes_edits.doc</span></p>
+          <p class="fragment fade-right"><span>report_final_v2_USE_THIS_ONE.doc</span></p>
+          <p class="fragment fade-right"><span>report_final_v3_Emeka_edits.doc</span></p>
         </section>
         <section>
           <p>This is a system based on hope and file names. It is prone to error, confusion, and data loss.
@@ -279,8 +281,8 @@
               (VCS)</strong>.</p>
         </section>
         <section>
-          <h4>The Magic Time-Traveling Notebook</h4>
-          <p class="fragment fade-right r-fit-text">Imagine your project folder is a magic notebook.</p>
+          <h4 class="r-fit-text">The Magic Time-Traveling Notebook</h4>
+          <p class="fragment fade-right">Imagine your project folder is a magic notebook.</p>
           <ul class="r-fit-text">
             <li class="fragment fade-right">Every time you reach a good stopping point, you tell the notebook, "Take a
               snapshot!"</li>
@@ -295,7 +297,7 @@
             <li class="fragment fade-right">You can even create a "copy" of a page and start a new chapter,
               experimenting with an idea without messing up your main story.</li>
           </ul>
-          <h6 class="fragment fade-right r-fit-text">Git is this magic notebook.</h6>
+          <p class="fragment fade-right">Git is this magic notebook.</p>
         </section>
         <section>
           <h4>The summary of a <br /><span class="r-fit-text">Version Control System (VCS)</span></h4>
@@ -308,11 +310,11 @@
         </section>
       </section>
       <section>
-        <h2 class="r-fit-text">Module 2: Git - The Local Universe</h2>
+        <h2 class="r-fit-text">Module 2: <br>Git - The Local Universe</h2>
       </section>
       <section>
         <section>
-          <h2>Git is Your Private Universe</h2>
+          <h2 class="r-fit-text">Git is Your Private Universe</h2>
           <p style="font-size: xx-large;">For now, forget the internet. Forget collaboration. Git is a tool that works
             100% on your local machine.
             It is your private time machine for your project. Everything we do in this module happens only on your
@@ -331,7 +333,7 @@
       </section>
       <section>
         <section>
-          <h4 class="r-fit-text">The Three Trees: The "Kitchen Analogy"</h4>
+          <h4 class="r-fit-text">The Three Trees:<br>The "Kitchen Analogy"</h4>
           <p style="font-size: x-large;">To master Git, you must internalize its three distinct areas.</p>
         </section>
         <section>
@@ -401,7 +403,7 @@
       </section>
       <section>
         <section>
-          <h4 class="r-fit-text">The Rhythm of Git: The Core Workflow</h4>
+          <h4 class="r-fit-text">The Rhythm of Git: <br>The Core Workflow</h4>
           <p style="font-size: x-large;">This four-command sequence will become muscle memory.</p>
         </section>
         <section>
@@ -469,11 +471,11 @@
       <section>
         <section>
           <h4 class="r-fit-text">Writing Professional Commit Messages</h4>
-          <p style="font-size: x-large;">Your commit history tells a story. Make it a good one. <br> We use a format
+          <p style="font-size: xx-large;">Your commit history tells a story. Make it a good one. <br> We use a format
             called <strong>Conventional Commits.</strong></p>
         </section>
         <section>
-          <h4 class="r-fit-text">Format: <span>&lttype&gt(&ltscope&gt): &ltsubject&gt</span></h4>
+          <p class="r-fit-text">Format: <span>&lttype&gt(&ltscope&gt): &ltsubject&gt</span></p>
 
           <table class="r-fit-text">
             <tr>
@@ -522,7 +524,7 @@
       <section>
         <section>
           <div class="r-fit-text">
-            <h2>Time Travel 101:</h2><span>git log</span>
+            <h2>Time Travel 101:</h2><span class="r-fit-text" style="font-size: x-large;">git log</span>
           </div>
         </section>
         <section>
@@ -645,9 +647,9 @@ feat: Create initial recipe file
       <section>
         <section>
           <h2 class="r-fit-text">The Multiverse: Branching</h2>
+          <p style="font-size: xx-large;">The Sacred Timeline: The <span>main</span> Branch</p>
         </section>
         <section>
-          <p class="r-fit-text">The Sacred Timeline: The <span>main</span> Branch</p>
           <div style="font-size: xx-large;">
             <p>Think of the <span>main</span> branch as the "Sacred Timeline" in a sci-fi movie.
               This timeline represents the official, stable, working, and deployed version of your code.
@@ -837,39 +839,382 @@ feat: Create initial recipe file
           </p>
         </section>
         <section>
-          <h6>
-            GitHub is a <strong>website</strong> that provides <strong>hosting for your Git repositories.</strong> 
+          <h5>
+            GitHub is a <strong>website</strong> that provides <strong>hosting for your Git repositories.</strong>
             But it's so much more:
-          </h6>
+          </h5>
           <ul style="font-size: xx-large;">
             <li class="fragment fade-right">
-              <strong>A Cloud Backup:</strong> It's the primary way to back up your local repositories. 
+              <strong>A Cloud Backup:</strong> It's the primary way to back up your local repositories.
               If your laptop is lost, your code is safe on GitHub.
             </li>
             <li class="fragment fade-right">
               <strong>A Collaboration Hub:</strong> It's where teams coordinate, review code, and manage projects.
             </li>
             <li class="fragment fade-right">
-              <strong>A Professional Portfolio:</strong> Your GitHub profile is your modern resume. 
+              <strong>A Professional Portfolio:</strong> Your GitHub profile is your modern resume.
               It showcases your work, your skills, and your contributions to the community.
             </li>
             <li class="fragment fade-right">
-              <strong>A Social Network:</strong> You can "follow" other developers, "star" projects you like, and participate in discussions.
+              <strong>A Social Network:</strong> You can "follow" other developers, "star" projects you like, and
+              participate in discussions.
             </li>
           </ul>
         </section>
+      </section>
+      <section>
         <section>
           <h4 class="r-fit-text">The Anatomy of a GitHub Repository</h4>
-          <p>Let's take a guided tour. When you go to a repository on GitHub (e.g., <span>github.com/nestjs/nest</span>), you'll see this:</p>
+          <p style="font-size: xx-large;">Let's take a guided tour. When you go to a repository on GitHub (e.g.,
+            <span>github.com/nestjs/nest</span>), you'll see this:
+          </p>
+        </section>
+        <section>
+          <ol style="font-size:larger;">
+            <li><strong>Code Tab:</strong> This is the main view. You see the files and folders, the README.md rendered
+              beautifully, and a list of recent commits.</li>
+            <li class="fragment fade-right"><strong>Issues Tab:</strong> This is the project's bug tracker and to-do
+              list. Developers use this to report bugs, request features, and discuss tasks.</li>
+          </ol>
+        </section>
+        <section>
+          <ol start="3" style="font-size:larger;">
+            <li><strong>Pull Requests Tab:</strong> The heart of collaboration. This is where proposed changes are
+              submitted for review before they are merged into the main codebase.</li>
+            <li class="fragment fade-right"><strong>Clone Button:</strong> The green <span>&lt&gt Code</span> button
+              gives you the URLs (HTTPS and SSH) you need to download a copy of this repository to your local machine.
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="5" style="font-size: xx-larger;">
+            <li><strong>Branch Selector:</strong> A dropdown that lets you view the files on different branches.</li>
+            <li class="fragment fade-right">
+              <strong>Star/Watch/Fork Buttons:</strong>
+
+              <ul>
+                <li class="fragment fade-right"><strong>Star:</strong> A "like" button. A way to bookmark a project.
+                </li>
+                <li class="fragment fade-right"><strong>Watch:</strong> Subscribe to notifications for all activity.
+                </li>
+                <li class="fragment fade-right"><strong>Fork:</strong> Create your own personal copy of the entire
+                  repository on your GitHub account. This is the first step to contributing to a project you don't own.
+                </li>
+              </ul>
+            </li>
+          </ol>
         </section>
       </section>
-      <section data-background-color="">
+      <section>
+        <section>
+          <h4 class="r-fit-text">The Concept of "Remotes"</h4>
+          <p style="font-size: xx-large;">Your local Git repository doesn't know GitHub exists. You have to create a
+            connection.</p>
+        </section>
+        <section>
+          <p style="font-size: larger; text-align: justify;">A remote is a named pointer to another repository somewhere
+            else (usually on the internet). It's a bookmark.</p>
+          <ul style="font-size: xx-large;">
+            <li class="fragment fade-right">By convention, the primary remote—the one your local repo is a copy of—is
+              named <span>origin</span>.</li>
+            <li class="fragment fade-right">When you <span>git clone</span> a repository from GitHub, Git automatically
+              sets up a remote named <span>origin</span> that points back to that GitHub URL.</li>
+            <li class="fragment fade-right">When you <span>git push</span>, you are sending your commits to the
+              <span>origin</span> remote.
+            </li>
+            <li class="fragment fade-right">When you <span>git pull</span>, you are fetching commits from the
+              <span>origin</span> remote.
+            </li>
+          </ul>
+          <p class="fragment fade-right" style="font-size: xx-large; text-align: justify;">You can view your remotes
+            with the command git remote -v.</p>
+        </section>
+      </section>
+      <section>
+        <h2>Module 4: <br> The Professional Workflow</h2>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">The Key to the Kingdom (SSH)</h4>
+        </section>
+        <section>
+          <h4 class="r-fit-text">The Padlock & Key Analogy</h4>
+          <p style="font-size: xx-large;">We need to talk to GitHub securely. SSH (Secure Shell) uses a system called
+            <strong>Public-Key Cryptography.</strong>
+          </p>
+        </section>
+        <section>
+          <p style="font-size: larger; text-align: justify;">Imagine your computer has a unique, custom-made padlock and
+            the only key that can open it.</p>
+          <ul style="font-size: xx-large;">
+            <li class="fragment fade-right">The <strong>Padlock</strong> is your <strong>Public Key</strong>. You can
+              make as many copies of the padlock as you want and give them to anyone. It's public. You can put it on
+              your GitHub account.</li>
+            <li class="fragment fade-right">The <strong>Key</strong> is your <strong>Private Key</strong>. It is secret.
+              It never leaves your computer. You must protect it.</li>
+          </ul>
+        </section>
+        <section>
+          <p style="font-size: xx-large;">
+            When you want to push code, GitHub takes your public padlock, locks your code in a box,
+            and sends it to you. The only way you can prove you are who you say you are is if you can unlock the box
+            with your private key.
+          </p>
+          <p style="font-size: xx-large;">
+            This system allows for secure communication without ever sending a password over the internet.
+            This is the professional standard.
+          </p>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2 class="r-fit-text">The SSH Setup: Step-by-Step</h2>
+        </section>
+        <section>
+          <ol>
+            <li>
+              <p style="font-size: xx-large;">
+                <strong>Generate a Key Pair:</strong> We will use a modern,
+                secure algorithm called <span>ed25519</span>. Open your terminal and run this,
+                using your GitHub email:
+              </p>
+
+              <pre>
+                <code data-noescape>
+  ssh-keygen -t ed25519 -C "your_email@example.com"
+                </code>
+              </pre>
+
+              <ul style="font-size: xx-large;">
+                <li><span>ssh-keygen</span>: The key generation program.</li>
+                <li><span>-t ed25519</span>: Specifies the <strong>type</strong> of key.</li>
+                <li><span>-C "..."</span>: A <strong>comment</strong> to help you identify the key.</li>
+              </ul>
+              <p style="font-size: xx-large;">
+                Press Enter three times to accept the default file location and to skip setting a passphrase for now.
+              </p>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="2">
+            <li>
+              <p style="font-size: xx-large;">
+                <strong>Copy Your PUBLIC Key:</strong> We need to copy the contents of the "padlock" file.
+              </p>
+
+              <pre>
+              <code>
+                cat ~/.ssh/id_ed25519.pub
+              </code>
+            </pre>
+
+              <p style="font-size: xx-large;">
+                This command will print a long string starting with <span>ssh-ed25519...</span>.
+                Highlight this entire string and copy it to your clipboard.
+              </p>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="3">
+            <li>
+              <strong>Add the Padlock to GitHub:</strong>
+
+              <ul style="font-size: xx-large;">
+                <li>Go to your GitHub Settings -> "SSH and GPG keys".</li>
+                <li>Click "New SSH key".</li>
+                <li><strong>Title:</strong> Give it a name you'll recognize, like "My Work Laptop".</li>
+                <li><strong>Key:</strong> Paste the public key you copied.</li>
+                <li>Click "Add SSH key".</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="4">
+            <li>
+              <pre>
+                <code data-noescape>
+          ssh -T git@github.com
+                </code>
+              </pre>
+
+              <p style="font-size: xx-large;">
+                You may see a message asking to verify the host's authenticity. Type <span>yes</span> and press Enter.
+                If you see a welcome message with your username, it worked. You are now set up for secure, passwordless
+                Git operations.
+              </p>
+            </li>
+          </ol>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">The Full Collaborative Loop:</h4>
+          <p class="r-fit-text"><span>clone</span>, <span>pull</span>, <span>push</span></p>
+        </section>
+        <section>
+          <ol style="font-size: xx-large;">
+            <li>
+              <span>git clone &ltssh-url&gt</span>: This is the starting point.
+              You find a repository on GitHub and make your own local copy.
+              This command does three things:
+
+              <ul>
+                <li>Downloads the entire repository, including its full history.</li>
+                <li>Creates a new folder on your machine.</li>
+                <li>Sets up the <span>origin</span> remote to point back to the GitHub URL.</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="2" style="font-size: xx-large;">
+            <li>
+              <span>git pull origin main</span>: Before you start any work, you should always get the latest changes
+              from the remote.
+              <span>pull</span> is actually a combination of two commands: <span>git fetch</span> (which downloads the
+              latest history)
+              and <span>git merge</span> (which merges the downloaded history into your current local branch).
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="3" style="font-size: xx-large;">
+            <li>
+              <span>git push origin &ltbranch-name&gt</span>: After you have made and committed
+              your changes on a local feature branch,
+              you use <span>push</span> to send those commits up to the <span>origin</span> remote on GitHub.
+            </li>
+          </ol>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">The Pull Request: Heart of Collaboration</h4>
+          <p style="font-size: xx-large;">You NEVER push directly to the <span>main</span> branch of a collaborative
+            project.
+            Instead, you propose your changes via a <strong>Pull Request (PR)</strong>.</p>
+        </section>
+        <section>
+          <p style="font-size: xx-large;">
+            A Pull Request is a formal request to the project maintainers:
+            "I have made some changes on my branch, and I would like you to please <strong><em>pull</em></strong> them
+            into the main branch."
+          </p>
+        </section>
+        <section>
+          <p style="text-align: left;"><strong>The Professional Workflow:</strong></p>
+          <ol style="font-size: xx-large;">
+            <li class="fragment fade-right"><strong>Pull the latest <span>main</span>:</strong> <span>git pull origin
+                main</span>.</li>
+            <li class="fragment fade-right"><strong>Create your feature branch:</strong> <span>git checkout -b
+                feat/my-cool-feature</span>.</li>
+            <li class="fragment fade-right"><strong>Do your work:</strong> Write code, <span>add</span>, and
+              <span>commit</span>. Make several small, logical commits.
+            </li>
+            <li class="fragment fade-right"><strong>Push your branch to GitHub:</strong> <span>git push origin
+                feat/my-cool-feature.</span></li>
+            <li class="fragment fade-right"><strong>Open the Pull Request:</strong> Go to the repository on GitHub. You
+              will see a big green button to "Compare & pull request". Click it.</li>
+          </ol>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">Anatomy of a PR & The Code Review</h4>
+          <p style="font-size: xx-large;">When you open a PR, you'll see a new screen.</p>
+        </section>
+        <section>
+          <ul style="font-size: xx-large;">
+            <li><strong>Title & Description:</strong> Explain <em>what</em> your PR does and <em>why</em>.
+              This is your chance to sell your change to the team.</li>
+            <li class="fragment fade-right"><strong>Reviewers:</strong> You will request a review from your teammates.
+            </li>
+            <li class="fragment fade-right"><strong>Commits Tab:</strong> A list of all the commits in your branch.</li>
+            <li class="fragment fade-right"><strong>Files Changed Tab:</strong> This is the most important part. It
+              shows a "diff" - every single line that was added, removed, or changed.</li>
+          </ul>
+        </section>
+        <section>
+          <div style="font-size: xx-large;">
+            <p style="text-align: left;">This is where <strong>Code Review</strong> happens. Your teammates will:</p>
+            <ul>
+              <li>Read your code in the "Files Changed" view.</li>
+              <li>Click on specific lines to leave comments, ask questions, or suggest improvements.</li>
+              <li>Once everyone is satisfied, they will "Approve" the PR.</li>
+              <li>Finally, a project maintainer will <strong>merge</strong> the PR, and your code becomes part of the
+                <span>main</span> branch.
+              </li>
+            </ul>
+            <p style="text-align: left;">This is the moment of celebration.</p>
+          </div>
+        </section>
+      </section>
+      <section>
+        <h2 class="r-fit-text">Handling Reality - Conflicts & Changes</h2>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">The Developer's Pause Button: </h4> <span class="r-fit-text">git stash</span>
+        </section>
+        <section>
+          <p style="font-size: xx-large;">
+            <strong>Scenario:</strong> You're in the middle of working on a complex feature on your branch.
+            You have a dozen changed files, but you're not ready to commit.
+            Suddenly, your boss runs over. "There's a critical bug on the live website!
+            You need to fix it right now!"
+          </p>
+        </section>
+        <section>
+          <p style="font-size: xx-large;">
+            You can't commit your half-finished work. You can't switch branches because Git will complain about your
+            uncommitted changes. What do you do?
+          </p>
+        </section>
+        <section>
+          <div style="font-size: xx-large;">
+            <p style="text-align: left;">You use git <span>stash</span>.</p>
+            <ul>
+              <li><span>git stash</span> is like a temporary, magic shelf. It takes all of your uncommitted changes
+                (both staged and unstaged),
+                sweeps them off your working directory, and saves them in a secret, temporary holding area.</li>
+              <li>Your working directory becomes clean, exactly as it was at your last commit.</li>
+              <li>You are now free to <span>git checkout main</span>, create a hotfix branch, fix the bug, and save the
+                day.</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div>
+            <p style="text-align: left;"><strong>When you're done with the emergency:</strong></p>
+            <ol>
+              <li>Come back to your original feature branch: <span>git checkout feat/my-cool-feature</span>.</li>
+              <li>Run <span>git stash pop</span>. This takes your saved changes from the magic shelf and applies 
+                them right back to your working directory, exactly as they were. You can now continue your work.</li>
+            </ol>
+          </div>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">The Inevitable Paradox: Merge Conflicts</h4>
+          <p style="font-size: xx-large;">What happens if two different changes are made to the exact same line in two different universes? 
+            When you try to merge them, Git doesn't know which one is correct.</p>
+        </section>
+        <section>
+          <p><strong>A conflict is NOT an error.</strong> It is Git pausing and saying, "Hey, human. I'm a computer. 
+            I can't read your mind. You have two different instructions for line 5. Please tell me which one to keep."</p>
+        </section>
+      </section>
+      <section>
         <input type="text" id="live-code" placeholder="enter git command" />
         <div class="mermaid">
-          <pre id="gitgraph-container" style="background-color: #fff;">
+          <pre id="gitgraph-container">
           </pre>
         </div>
-        <aside class="notes">
+        <aside class="notes" aria-label="notes">
           This is Git & GitHub code block example with syntax highlighting and
           line numbers. Don't forget to include the necessary CSS and JS files
           for syntax highlighting.
