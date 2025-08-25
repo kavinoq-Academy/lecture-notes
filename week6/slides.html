@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>Kavinoq | Git & GitHub</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <link rel="stylesheet" href="../dist/reset.css" />
+  <link rel="stylesheet" href="../dist/reveal.css" />
+  <link rel="stylesheet" href="../dist/theme/black.css" />
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../plugin/highlight/atom-one-dark-reasonable.css" />
+
+  <!-- Font awesome is required for the chalkboard plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Custom controls plugin is used to for opening and closing annotation modes. -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/plugin.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/style.css" />
+  <!-- Chalkboard plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="../plugin/editor/style.css" />
+  <script src="../plugin/editor/revealeditor.js"></script>
+  <style>
+    header {
+      background: #fff;
+      padding: 0.1em 0.4em;
+      text-align: center;
+    }
+
+    header a {
+      font-size: 1em;
+      text-decoration: none;
+    }
+
+    #gitgraph-container {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 4px;
+      baclkground: #f9f9f9;
+    }
+
+    /* --- Advanced "Terminal" Input Style --- */
+    #live-code {
+      /* Sizing & Box Model */
+      box-sizing: border-box;
+      width: 80%;
+      /* Increased left padding to make space for the icon */
+      padding: 12px 20px 12px 45px;
+      margin-top: 20px;
+      position: relative;
+      /* Needed for icon positioning if you use another method */
+
+      /* Font & Appearance */
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 1.1rem;
+      color: #33ff99;
+      /* Classic green terminal text */
+      background-color: #1a1a1a;
+      border: none;
+      /* A borderless, flat look */
+      border-bottom: 2px solid #555;
+      /* Underline style */
+      border-radius: 0;
+      /* Sharp corners for a classic terminal look */
+      outline: none;
+
+      /* Add the '>' symbol using an SVG background image */
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23888" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>');
+      background-repeat: no-repeat;
+      background-position: left 15px center;
+      /* Position the icon */
+
+      /* Smooth transition for focus effect */
+      transition: border-color 0.2s ease-in-out;
+    }
+
+    /* Style for the placeholder text */
+    #live-code::placeholder {
+      color: #888;
+      opacity: 1;
+    }
+
+    /* Style when the input is focused */
+    #live-code:focus {
+      border-bottom-color: #33ff99;
+      /* Match border color to text color on focus */
+    }
+
+    span {
+      color: #33ff99;
+    }
+  </style>
+  <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+  <header>
+    <a class="btn"> RevealEditor </a>
+  </header>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h2 class="r-fit-text">
+          Month 1, Week 2
+        </h2>
+      </section>
+      <section>
+        <h2 class="r-fit-text">
+          A Complete Guide to Git & GitHub
+        </h2>
+        <p style="font-size: xx-large;">Today, we build the most important foundation of your professional career. </p>
+      </section>
+      <section>
+        <section>
+          <h2>Let's Talk About a Nightmare</h2>
+          <p class="fragment fade-right">We've all been here:</p>
+          <ul style="color:#a58383">
+            <li class="fragment fade-right">MyProject.js</li>
+            <li class="fragment fade-right">MyProject_working.js</li>
+            <li class="fragment fade-right">MyProject_backup_monday.js</li>
+            <li class="fragment fade-right">MyProject_final.js</li>
+            <li class="fragment fade-right">MyProject_final_for_real.js</li>
+          </ul>
+        </section>
+        <section>
+          <h4 class="r-fit-text">Quetions for you:</h4>
+          <ol style="font-size: xx-large;">
+            <li class="fragment fade-right">Which one is the actual final version?</li>
+            <li class="fragment fade-right">What did you change between <span style="color:#a58383">_final</span> and
+              <span style="color:#a58383">_final_for_real</span>?
+            </li>
+            <li class="fragment fade-right">How do you undo a mistake you made in all of them?</li>
+            <li class="fragment fade-right">How do you share this with a friend so you can both work on it at the same
+              time without creating
+              <span style="color:#a58383">MyProject_final_for_real_EMEKA'S_COPY.js</span>?
+            </li>
+          </ol>
+          <p class="fragment fade-right">This is chaos. This is unprofessional. Today, we end this chaos forever.</p>
+        </section>
+      </section>
+      <section>
+        <h2>Module 0: The Professional Toolkit Setup</h2>
+      </section>
+      <section>
+        <section>
+          <h2>Acquiring Your Most Important Tool</h2>
+          <p>Before we can begin, we must acquire and configure our primary tool: <span>Git</span>. This is a one-time
+            setup for your machine.
+            We will also introduce ourselves to Git so it knows who is writing the history.</p>
+        </section>
+        <section>
+          <h4>Our Goal</h4>
+          <ol>
+            <li class="fragment fade-right">Install the Git software.</li>
+            <li class="fragment fade-right">Verify that the installation was successful.</li>
+            <li class="fragment fade-right">Introduce ourselves to Git so it knows who we are.</li>
+          </ol>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2>Git Installation on Linux</h2>
+          <p style="font-size: xx-large;">Linux makes this incredibly simple using its built-in package manager,
+            <span>apt</span>
+          </p>
+          <p style="font-size: xx-large;"><span>apt</span> (Advanced Package Tool) is Ubuntu's built-in package manager.
+            <span>sudo</span> stands for "Super User Do," which temporarily gives you administrative privileges to
+            install software.
+          </p>
+
+          <aside class="notes">
+            <p>Explain how Debian is built on top of Linux Kerner. Then Ubuntu extended Debian, and Linux Mint extends
+              Ubuntu.</p>
+          </aside>
+        </section>
+        <section>
+          <ol>
+            <li>
+              <p style="font-size: xx-large;">
+                <strong>First, update the package list.</strong>
+                This command downloads the latest catalog of available software, ensuring you get a recent version of
+                Git.
+              </p>
+              <pre>
+                <code class="language-bash" data-noescape>
+                  sudo apt update
+                </code>
+              </pre>
+            </li>
+            <li>
+              <p style="font-size: xx-large;">
+                <strong>Now, install <span>Git</span>.</strong> This command finds the "git" package in the catalog and
+                installs it.
+              </p>
+              <pre>
+                <code class="language-bash" data-noescape>
+                  sudo apt install git
+                </code>
+              </pre>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h5>Universal Verification & Configuration</h5>
+          <p class="fragment fade-right" style="font-size: xx-large;">This step confirms the installation and sets up
+            your identity. It is mandatory.
+          </p>
+          <ol>
+            <li class="fragment fade-right">
+              <p style="font-size: xx-large;">
+                <strong>Verify:</strong> Close ALL open terminal windows and open a brand new one.
+                This ensures your system's PATH has been updated. Type this command and press Enter:
+              </p>
+              <pre>
+            <code class="language-bash" data-noescape>
+              git --version
+            </code>
+          </pre>
+              <p class="fragment fade-right" style="font-size: x-large;">You must see a version number (e.g., <span>git
+                  version 2.41.0</span>).
+                If you do, it worked. Else, something went wrong with the installation.</p>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="2">
+            <li>
+              <p style="font-size: xx-large;">
+                <strong>Configure:</strong> We must tell Git who we are. This information is baked into every commit
+                (snapshot) you create.
+                It's how you get credit for your work.
+              </p>
+              <pre>
+  <code class="language-python" data-noescape>
+    # Use your actual name, in quotes
+    git config --global user.name "Your Name"
+
+    # Use the email you signed up to GitHub with, in quotes
+    git config --global user.email "you@example.com"
+  </code>
+                </pre>
+            </li>
+          </ol>
+          <ul class="fragment fade-right">
+            <li>
+              <p style="font-size: xx-large;">
+                What is <span>--global</span>? This flag tells Git to write this configuration to a special file in your
+                user's home directory (e.g., <span>~/.gitconfig</span>).
+                This setting will apply to every single Git project on your computer. You only need to do this once.
+              </p>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 class="r-fit-text">Module 1: The "Why" - Ending the Chaos</h2>
+      </section>
+      <section>
+        <section>
+          <h2 class="r-fit-text">The Pain We've All Felt</h2>
+        </section>
+        <section>
+          <p><span>report_final.doc</span></p>
+          <p><span>report_final_v2_USE_THIS_ONE.doc</span></p>
+          <p><span>report_final_v3_janes_edits.doc</span></p>
+        </section>
+        <section>
+          <p>This is a system based on hope and file names. It is prone to error, confusion, and data loss.
+            As professionals, we need an engineered solution. That solution is a <strong>Version Control System
+              (VCS)</strong>.</p>
+        </section>
+        <section>
+          <h4>The Magic Time-Traveling Notebook</h4>
+          <p class="fragment fade-right r-fit-text">Imagine your project folder is a magic notebook.</p>
+          <ul class="r-fit-text">
+            <li class="fragment fade-right">Every time you reach a good stopping point, you tell the notebook, "Take a
+              snapshot!"</li>
+            <li class="fragment fade-right">The notebook takes a perfect, instantaneous photograph of every file and
+              folder exactly as it is.
+              It pastes this photo onto a new page.</li>
+            <li class="fragment fade-right">Below the photo, you write a short message explaining what you changed.</li>
+            <li class="fragment fade-right">Each page is magically chained to the previous one, creating an unbreakable
+              history.</li>
+            <li class="fragment fade-right">You can, at any time, open the notebook to any page and your project folder
+              will instantly revert to that state.</li>
+            <li class="fragment fade-right">You can even create a "copy" of a page and start a new chapter,
+              experimenting with an idea without messing up your main story.</li>
+          </ul>
+          <h6 class="fragment fade-right r-fit-text">Git is this magic notebook.</h6>
+        </section>
+        <section>
+          <h4>The summary of a <br /><span class="r-fit-text">Version Control System (VCS)</span></h4>
+          <ul>
+            <li class="fragment fade-right">It gives you a perfect history.</li>
+            <li class="fragment fade-right">It lets you go back to any previous page (photograph).</li>
+            <li class="fragment fade-right">It lets you see exactly what changed between pages, and who made those
+              changes.</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2 class="r-fit-text">Module 2: Git - The Local Universe</h2>
+      </section>
+      <section>
+        <section>
+          <h2>Git is Your Private Universe</h2>
+          <p style="font-size: xx-large;">For now, forget the internet. Forget collaboration. Git is a tool that works
+            100% on your local machine.
+            It is your private time machine for your project. Everything we do in this module happens only on your
+            computer.</p>
+        </section>
+        <section>
+          <p>We will master the local universe first. This includes:</p>
+          <ol class="r-fit-text">
+            <li class="fragment fade-right">Creating a repository (a new universe).</li>
+            <li class="fragment fade-right">Saving snapshots of our work (recording history).</li>
+            <li class="fragment fade-right">Traveling through time to view past snapshots.</li>
+            <li class="fragment fade-right">Creating and exploring parallel universes (branching).</li>
+            <li class="fragment fade-right">Fusing those parallel universes back into one (merging).</li>
+          </ol>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">The Three Trees: The "Kitchen Analogy"</h4>
+          <p style="font-size: x-large;">To master Git, you must internalize its three distinct areas.</p>
+        </section>
+        <section>
+          <ol>
+            <li>
+              <strong>Working Directory</strong>
+
+              <ul style="font-size: xx-large;">
+                <li>
+                  <strong>The Analogy:</strong> Your entire kitchen. It's where you have all your ingredients, pots, and
+                  pans.
+                  It's where the work happens, and it's usually messy.
+                </li>
+                <li>
+                  <strong>The Reality:</strong> The project folder on your computer. You can create, edit, and delete
+                  files here.
+                  Git is aware of this area, but it doesn't permanently record anything that happens here until you tell
+                  it to.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="2">
+            <li>
+              <strong>Staging Area (The Index)</strong>
+
+              <ul style="font-size: xx-large;">
+                <li>
+                  <strong>The Analogy:</strong> Your clean cutting board. Before you take a photo for your cookbook, you
+                  don't just photograph the whole messy kitchen.
+                  You carefully select specific prepared ingredients and arrange them neatly on the cutting board. This
+                  is your "staged" photo.
+                </li>
+                <li>
+                  <strong>The Reality:</strong> A special holding area. When you use the <span>git add</span> command,
+                  you are telling Git,
+                  "Take this specific change I made and place it on the Staging Area. It is now ready to be included in
+                  my next snapshot."
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="3">
+            <li>
+              <strong>Repository (<span>.git</span> folder)</strong>
+
+              <ul style="font-size: xx-large;">
+                <li>
+                  <strong>The Analogy:</strong> The beautiful, printed cookbook. Once you take the photo of your staged
+                  ingredients on the cutting board,
+                  you print it on a new page and add it to the book. This page is permanent. You can't un-print it.
+                </li>
+                <li>
+                  <strong>The Reality:</strong> The hidden <span>.git</span> subdirectory inside your project.
+                  When you use <span>git commit</span>, Git takes everything on the Staging Area, creates a
+                  permanent snapshot (a commit), and stores it forever in the <span>.git</span> directory. This is your
+                  project's sacred history.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">The Rhythm of Git: The Core Workflow</h4>
+          <p style="font-size: x-large;">This four-command sequence will become muscle memory.</p>
+        </section>
+        <section>
+          <ol>
+            <li>
+              <span>git init</span> - Get a new cookbook. Run this ONCE at the very beginning of a project.
+              It creates the magic .git folder.
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="2">
+            <li>
+              <span>git status</span> - Check your surroundings. This is your best friend.
+              It tells you what branch you're on, what files are changed but not staged, and what files are staged but
+              not committed.
+              Run this constantly. You can never break anything with <span>git status</span>.
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="3">
+            <li>
+              <p class="r-fit-text"><span>git add &ltfilename&gt</span> or <span>git add .</span> - Prepare the
+                ingredients.</p>
+
+              <ul style="font-size: xx-large;">
+                <li class="fragment fade-right">
+                  <span>git add &ltfilename&gt</span> : Puts a single file's changes onto the Staging Area. (Placing one
+                  ingredient on the cutting board).
+                </li>
+                <li class="fragment fade-right">
+                  <span>git add .</span> : A powerful shortcut that stages ALL changed files in the current directory
+                  and subdirectories.
+                  (Scooping everything from your counter onto the cutting board).
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <ol start="4">
+            <li>
+              <p class="r-fit-text"><span>git commit -m "Your message"</span> - Take the snapshot.</p>
+
+              <ul style="font-size: xx-large;">
+                <li class="fragment fade-right">
+                  <span>commit</span> : The command to create the permanent snapshot.
+                </li>
+                <li class="fragment fade-right">
+                  <span>-m</span> : A "flag" that stands for "message."
+                  It tells the <span>commit</span> command that you're providing the descriptive message on the same
+                  line.
+                </li>
+                <li class="fragment fade-right">
+                  What if you forget <span>-m</span>?
+                  If you just type <span>git commit</span>, Git will open the default text editor
+                  you configured (e.g., VS Code, vim, or nano) and ask you to write a longer message there.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">Writing Professional Commit Messages</h4>
+          <p style="font-size: x-large;">Your commit history tells a story. Make it a good one. <br> We use a format
+            called <strong>Conventional Commits.</strong></p>
+        </section>
+        <section>
+          <h4 class="r-fit-text">Format: <span>&lttype&gt(&ltscope&gt): &ltsubject&gt</span></h4>
+
+          <table class="r-fit-text">
+            <tr>
+              <th>Type</th>
+              <th>Purpose</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td><span>feat</span></td>
+              <td>A new feature for the user.</td>
+              <td><span>feat(auth): Add password reset endpoint</span></td>
+            </tr>
+            <tr>
+              <td><span>fix</span></td>
+              <td>A bug fix for the user.</td>
+              <td><span>fix(api): Correctly handle null values in user response</span></td>
+            </tr>
+            <tr>
+              <td><span>docs</span></td>
+              <td>Changes to documentation only.</td>
+              <td><span>docs(readme): Update installation instructions</span></td>
+            </tr>
+            <tr>
+              <td><span>style</span></td>
+              <td>Formatting changes, white-space, etc. No code logic change.</td>
+              <td><span>style(core): Format code according to prettier rules</span></td>
+            </tr>
+            <tr>
+              <td><span>refactor</span></td>
+              <td>A code change that neither fixes a bug nor adds a feature.</td>
+              <td><span>refactor(user): Simplify user creation logic</span></td>
+            </tr>
+            <tr>
+              <td><span>test</span></td>
+              <td>Adding or correcting tests.</td>
+              <td><span>test(auth): Add unit tests for login service</span></td>
+            </tr>
+            <tr>
+              <td><span>chore</span></td>
+              <td>Changes to the build process or auxiliary tools.</td>
+              <td><span>chore(deps): Upgrade NestJS to version 9.1</span></td>
+            </tr>
+          </table>
+        </section>
+      </section>
+      <section>
+        <section>
+          <div class="r-fit-text">
+            <h2>Time Travel 101:</h2><span>git log</span>
+          </div>
+        </section>
+        <section>
+          <div class="r-fit-text">
+            <p>Opening the Magic Notebook: <span>git log</span></p>
+          </div>
+          <p style="font-size: xx-large;">You have made your first commit. You have saved the first page in your
+            project's history. How do you look at it?</p>
+        </section>
+        <section>
+          <div style="font-size: xx-large;">
+            <p>The <span>git log</span> command is your window into the past. When you run it, you will see a
+              chronological list of
+              every commit, starting with the most recent.</p>
+            <p>Let's break down the output of git log piece by piece:</p>
+          </div>
+
+          <pre>
+            <code class="language-java" data-noescape>
+$ git log
+              
+commit a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0 (HEAD -> main)
+Author: Your Name <you@example.com>
+Date:   Mon Aug 25 01:45:00 2025 +0100
+
+feat: Create initial recipe file
+            </code>
+          </pre>
+        </section>
+        <section>
+          <ul>
+            <li style="font-size: xx-large;">
+              <span>commit a1b2c3d4e5f6...</span>: This long string of characters is the commit hash.
+              It is a unique 40-character ID (generated using a SHA-1 hash algorithm) for this exact snapshot.
+              Think of it as the page number in your magic notebook. It is mathematically guaranteed to be unique.
+              You will often use the first 7-10 characters to refer to a commit, which is usually enough to be unique
+              within a project.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <ul style="font-size: xx-large;">
+            <li>
+              <span>(HEAD -> main)</span>: This is one of the most important concepts.
+              <ul>
+                <li>
+                  <span>HEAD</span> is a special pointer. It answers the question, "Where am I right now?"
+                  <span>HEAD</span> always points to the very last thing that happened in your current branch.
+                  It's the "You Are Here" marker on your project's timeline.
+                </li>
+                <li>
+                  <span>-> main</span> tells you that <span>HEAD</span> is currently pointing to the tip of the main
+                  branch.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <ul style="font-size: xx-large;">
+            <li><span>Author</span>: The name and email you set up in git config. This is why that step was so
+              important.</li>
+            <li class="fragment fade-right"><span>Date</span>: The exact timestamp when this commit was made.</li>
+            <li class="fragment fade-right"><strong>The Commit Message</strong>: The descriptive message you wrote,
+              indented for clarity.</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">A Better View of History</h4>
+          <p style="font-size: xx-large;">The default <span>git log</span> can be very verbose. <br /> Here are some
+            incredibly useful flags to customize
+            the view:</p>
+        </section>
+        <section>
+          <ul>
+            <li>
+              <p style="font-size: xx-large;">
+                <span>git log --oneline</span>: This is the best way to get a quick overview of your project's history.
+                It condenses each commit to a single line.
+              </p>
+
+              <pre>
+                <code class="language-java" data-noescape>
+  $ git log --oneline
+  a1b2c3d (HEAD -> main) feat: Create initial recipe file
+                </code>
+              </pre>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <ul>
+            <li>
+              <p style="font-size: xx-large;">
+                <span>git log --graph</span>: This will draw a little ASCII art graph in the terminal showing how the
+                branches diverge and merge.
+                It's not useful now, but it will become invaluable when we start branching.
+              </p>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <ul>
+            <li>
+              <p style="font-size: xx-large;">
+                <span>git log --stat</span>: This shows the list of files that were changed in each commit, as well as
+                how many lines were added or removed.
+              </p>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <p style="font-size: xx-large;">You can even combine them! A common and powerful alias many developers use is
+            <span>git log --oneline --graph --all</span>
+          </p>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2 class="r-fit-text">The Multiverse: Branching</h2>
+        </section>
+        <section>
+          <p class="r-fit-text">The Sacred Timeline: The <span>main</span> Branch</p>
+          <div style="font-size: xx-large;">
+            <p>Think of the <span>main</span> branch as the "Sacred Timeline" in a sci-fi movie.
+              This timeline represents the official, stable, working, and deployed version of your code.
+              You must protect it at all costs. You never, ever work directly on the <span>main</span> branch.</p>
+            <p>Directly committing to <span>main</span> is like performing surgery on a live patient without knowing if
+              your new technique will work.
+              It's reckless and unprofessional.</p>
+          </div>
+        </section>
+        <section>
+          <p class="r-fit-text">Creating a Parallel Universe: Branching</p>
+          <p style="font-size: xx-large;">So how do we do work? We create a <strong>branch</strong>.</p>
+        </section>
+        <section>
+          <p style="font-size: xx-large;">A branch is a separate, isolated, parallel timeline. It's a "What If...?"
+            universe where you can safely work on a new feature or experiment with an idea.</p>
+          <ul style="font-size: xx-large;">
+            <li class="fragment fade-right">When you create a branch, you are creating a lightweight, movable pointer
+              that starts at the exact commit you're currently on.</li>
+            <li class="fragment fade-right">As you make new commits on this branch, your new timeline moves forward,
+              completely independent of the <span>main</span> timeline.</li>
+            <li class="fragment fade-right">It is incredibly fast and cheap to create branches in Git. Professional
+              developers create branches for everything, even a one-line bug fix.</li>
+          </ul>
+        </section>
+        <section>
+          <p><strong>Commands:</strong></p>
+
+          <ul style="font-size: xx-large;">
+            <li>
+              <span>git branch &ltbranch-name&gt</span>: This creates a new branch pointer but does not switch you to
+              it.
+              (Like drawing a door to a new universe but not walking through it).
+            </li>
+            <li>
+              <span>git checkout &ltbranch-name&gt</span>: This switches your HEAD pointer and your working directory to
+              the specified
+              branch. (Like walking through the door).
+            </li>
+          </ul>
+        </section>
+        <section>
+          <p class="r-fit-text">The Portal Gun: <span>git checkout -b</span></p>
+          <p style="font-size: xx-large;">You will almost never use git branch and git checkout separately. There is a
+            far more convenient command that does both at once.</p>
+        </section>
+        <section>
+          <pre>
+            <code data-noescape>
+              git checkout -b &ltbranch-name&gt
+            </code>
+          </pre>
+          <ul style="font-size: xx-large;">
+            <li>
+              <span>-b</span>: This flag stands for "branch." It tells the <span>checkout</span> command,
+              "I want you to <strong>create a new branch</strong> with this name, and then <strong>immediately switch me
+                to it.</strong>"
+            </li>
+            <li>
+              This is your "portal gun." It creates a new parallel universe and teleports you into it in one smooth
+              action.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <p>Let's see it in action:</p>
+          <pre>
+            <code data-noescape>
+            # We are on the main timeline
+            $ git status
+            On branch main
+
+            # Let's create a new feature branch 
+            # to add a user login system
+            $ git checkout -b feat/user-login
+            Switched to a new branch 'feat/user-login'
+
+            # The portal gun worked!
+            $ git status
+            On branch feat/user-login
+            </code>
+          </pre>
+          <p style="font-size: x-large;">
+            Now, if you create a file called <span>login.js</span>, add it, and commit it, that commit will exist only
+            in the <span>feat/user-login</span> timeline.
+            If you were to <span>git checkout main</span>, <span>login.js</span> would instantly disappear from your
+            file system,
+            because it does not exist in the <span>main</span> timeline's history. This is the magic of branches in
+            action.
+          </p>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2 class="r-fit-text">Fusing Timelines: Merging</h2>
+        </section>
+        <section>
+          <h4>The Happy Path: Fast-Forward Merge</h4>
+          <div style="font-size: x-large; text-align: justify;">
+            <p>
+              Your new feature is complete and tested on its branch. It's time to bring that work into the "Sacred
+              Timeline" (<span>main</span>).
+              This process is called merging.
+            </p>
+            <p>
+              The simplest case is a "fast-forward" merge. This happens when the <span>main</span> branch has had
+              <strong>no new commits</strong> since you created your feature branch.
+            </p>
+            <p>
+              <strong>Analogy</strong>: You wrote a few new pages for your cookbook in a separate notebook. The main
+              cookbook hasn't been touched.
+              To merge, you simply tape your new pages onto the end of the main cookbook. The history is a single,
+              straight line.
+            </p>
+          </div>
+        </section>
+        <section>
+          <p>
+            <strong>The Two-Step Merge Dance:</strong>
+          </p>
+          <ol style="font-size: xx-large;">
+            <li>
+              <p><strong>Return to the timeline you want to update.</strong> This is the branch that will receive the
+                changes.</p>
+              <pre>
+                <code data-noescape>
+                git checkout main
+              </code>
+            </pre>
+            </li>
+            <li>
+              <p><strong>Return to the timeline you want to update. This is the branch that will receive the
+                  changes.</strong></p>
+              <pre>
+                <code data-noescape>
+                git merge feat/user-login
+              </code>
+            </pre>
+            </li>
+          </ol>
+          <p style="font-size: xx-large;">The main branch pointer will simply "fast-forward" to the same commit as your
+            feature branch tip.</p>
+        </section>
+        <section>
+          <h4 class="r-fit-text">The Real World: Three-Way Merge</h4>
+          <div style="font-size: xx-large;">
+            <p>What if, while you were working on your feature, someone else merged their own feature into
+              <span>main</span>? Now the timelines have truly diverged.
+            </p>
+            <p>You can't just fast-forward main anymore. Git needs to perform a three-way merge.</p>
+          </div>
+        </section>
+        <section>
+          <p class="r-fit-text">
+            <strong>How it works:</strong> Git looks at three commits:
+          </p>
+          <ol style="font-size: xx-large;">
+            <li>The tip of your feature branch.</li>
+            <li>The tip of the <span>main</span> branch.</li>
+            <li>The common ancestor commit where your branch originally split off from <span>main</span>.</li>
+          </ol>
+          <div style="font-size: x-large;">
+            <p>
+              It then combines the work from both branches and creates a special new <strong>merge commit</strong> on
+              the <span>main</span> branch.
+              This merge commit has two parents, tying the two divergent histories back together.
+            </p>
+            <p>
+              The commands are exactly the same: <span>git checkout main</span>, then <span>git merge
+                &ltbranch-name&gt</span>. Git is smart enough to know which type of merge to perform.
+            </p>
+          </div>
+        </section>
+      </section>
+      <section data-background-iframe="https://git-school.github.io/visualizing-git" data-background-color="#fff">
+      </section>
+      <section>
+        <h2 class="r-fit-text">Module 3: <br>GitHub - The Global Town Square</h2>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">What is GitHub?</h4>
+          <p style="font-size: xx-large;">
+            It's time to go online. If Git is your private notebook,
+            <strong>GitHub is the world's largest library, coffee shop,
+              and town square for developers.</strong>
+          </p>
+        </section>
+        <section>
+          <h6>
+            GitHub is a <strong>website</strong> that provides <strong>hosting for your Git repositories.</strong> 
+            But it's so much more:
+          </h6>
+          <ul style="font-size: xx-large;">
+            <li class="fragment fade-right">
+              <strong>A Cloud Backup:</strong> It's the primary way to back up your local repositories. 
+              If your laptop is lost, your code is safe on GitHub.
+            </li>
+            <li class="fragment fade-right">
+              <strong>A Collaboration Hub:</strong> It's where teams coordinate, review code, and manage projects.
+            </li>
+            <li class="fragment fade-right">
+              <strong>A Professional Portfolio:</strong> Your GitHub profile is your modern resume. 
+              It showcases your work, your skills, and your contributions to the community.
+            </li>
+            <li class="fragment fade-right">
+              <strong>A Social Network:</strong> You can "follow" other developers, "star" projects you like, and participate in discussions.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4 class="r-fit-text">The Anatomy of a GitHub Repository</h4>
+          <p>Let's take a guided tour. When you go to a repository on GitHub (e.g., <span>github.com/nestjs/nest</span>), you'll see this:</p>
+        </section>
+      </section>
+      <section data-background-color="">
+        <input type="text" id="live-code" placeholder="enter git command" />
+        <div class="mermaid">
+          <pre id="gitgraph-container" style="background-color: #fff;">
+          </pre>
+        </div>
+        <aside class="notes">
+          This is Git & GitHub code block example with syntax highlighting and
+          line numbers. Don't forget to include the necessary CSS and JS files
+          for syntax highlighting.
+        </aside>
+      </section>
+    </div>
+  </div>
+
+  <script src="../dist/reveal.js"></script>
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+  <script src="../plugin/zoom/zoom.js"></script>
+  <script src="../plugin/editor/src-min-noconflict/ace.js"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: false });
+
+
+    const gitPracticeContainer = document.getElementById("gitgraph-container");
+    const liveCodeInput = document.getElementById("live-code");
+    // 1. Store the diagram definition in a JavaScript variable.
+    //    This is the "source of truth".
+    let gitDefinition = `
+---
+config:
+  theme: 'neutral'
+  themeVariables:
+    background: '#fff'
+    darkMode: false
+---
+      gitGraph\n
+`;
+
+    // Function to render the diagram
+    const renderGraph = async () => {
+      try {
+        // 2. Use mermaid.render() to generate the SVG.
+        const { svg } = await mermaid.render('git-diagram', gitDefinition);
+        gitPracticeContainer.innerHTML = svg;
+      } catch (e) {
+        // If rendering fails, show the error in the container.
+        console.error(e);
+      }
+    };
+
+    liveCodeInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+
+        const allowedGitSubCommands = ["commit", "branch", "checkout", "merger", "cherry-pick"]
+        const isValidGitSubCommand = (command) => allowedGitSubCommands.includes(command);
+
+        const command = liveCodeInput.value.trim();
+
+        if (command && command.startsWith("git ")) {
+          const mermaidCommand = command.substring(4);
+          const gitSubCommand = mermaidCommand.split(" ")[0];
+
+          if (isValidGitSubCommand(gitSubCommand)) {
+            // Add the new line to our state variable
+            gitDefinition += `    ${mermaidCommand}\n`;
+
+            // Re-render the graph with the updated definition
+            renderGraph();
+
+            // Clear the input for the next command
+            liveCodeInput.value = '';
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      center: true,
+
+      customcontrols: {
+        controls: [
+          {
+            icon: '<i class="fa fa-pen-square"></i>',
+            title: "Toggle chalkboard (B)",
+            action: "RevealChalkboard.toggleChalkboard();",
+          },
+          {
+            icon: '<i class="fa fa-pen"></i>',
+            title: "Toggle notes canvas (C)",
+            action: "RevealChalkboard.toggleNotesCanvas();",
+          },
+        ],
+      },
+      chalkboard: {
+      },
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [
+        RevealMarkdown,
+        RevealHighlight,
+        RevealNotes,
+        RevealZoom,
+        RevealChalkboard,
+        RevealCustomControls,
+      ],
+    });
+    $(".btn").RevealEditor();
+  </script>
+</body>
+
+</html>
