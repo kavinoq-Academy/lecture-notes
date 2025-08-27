@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <title>Kavinoq | Git & GitHub</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
 
   <link rel="stylesheet" href="../dist/reset.css" />
   <link rel="stylesheet" href="../dist/reveal.css" />
@@ -107,7 +107,7 @@
     <a class="btn"> RevealEditor </a>
   </header>
   <div class="reveal">
-    <div class="slides">
+    <section class="slides">
       <section>
         <h2 class="r-fit-text">
           Month 1, Week 2
@@ -827,7 +827,22 @@ feat: Create initial recipe file
       <section data-background-iframe="https://git-school.github.io/visualizing-git" data-background-color="#fff">
       </section>
       <section>
+        <input type="text" id="live-code" placeholder="enter git command" />
+        <div class="mermaid">
+          <pre id="gitgraph-container">
+          </pre>
+        </div>
+        <aside class="notes" aria-label="notes">
+          This is Git & GitHub code block example with syntax highlighting and
+          line numbers. Don't forget to include the necessary CSS and JS files
+          for syntax highlighting.
+        </aside>
+      </section>
+      <section>
         <h2 class="r-fit-text">Module 3: <br>GitHub - The Global Town Square</h2>
+        <p style="font-size: xx-large;">This section covers the guided tour of the GitHub platform:
+          what it is, the anatomy of a repository page, the Issue tracker, and the concept of "remotes," as detailed
+          previously.</p>
       </section>
       <section>
         <section>
@@ -1191,7 +1206,7 @@ feat: Create initial recipe file
             <p style="text-align: left;"><strong>When you're done with the emergency:</strong></p>
             <ol>
               <li>Come back to your original feature branch: <span>git checkout feat/my-cool-feature</span>.</li>
-              <li>Run <span>git stash pop</span>. This takes your saved changes from the magic shelf and applies 
+              <li>Run <span>git stash pop</span>. This takes your saved changes from the magic shelf and applies
                 them right back to your working directory, exactly as they were. You can now continue your work.</li>
             </ol>
           </div>
@@ -1200,27 +1215,171 @@ feat: Create initial recipe file
       <section>
         <section>
           <h4 class="r-fit-text">The Inevitable Paradox: Merge Conflicts</h4>
-          <p style="font-size: xx-large;">What happens if two different changes are made to the exact same line in two different universes? 
-            When you try to merge them, Git doesn't know which one is correct.</p>
+          <p style="font-size: xx-large;">A merge conflict is not an error. It is a natural, expected part of
+            collaborative development.
+            It is Git's way of saying: "I have encountered an ambiguity that I cannot solve.
+            I am pausing to prevent data loss and am now asking you, the intelligent human, to make the final decision."
+          </p>
         </section>
         <section>
-          <p><strong>A conflict is NOT an error.</strong> It is Git pausing and saying, "Hey, human. I'm a computer. 
-            I can't read your mind. You have two different instructions for line 5. Please tell me which one to keep."</p>
+          <div style="font-size: xx-large;">
+            <p style="text-align: left;"><strong>When does it happen? </strong> When two branches have made different
+              changes to
+              the <strong>exact same lines</strong> in the <strong>exact same file.</strong></p>
+            <ul>
+              <li class="fragment fade-right"><strong>Developer A (You):</strong> Your task is to refactor the site's
+                header,
+                changing the <span>&lth1&gt</span> tag to a more semantic <span>&ltheader&gt</span> tag.</li>
+              <li class="fragment fade-right"><strong>Developer B (Your Teammate):</strong> Their task is to add a new
+                "About Us" link to the
+                navigation menu, which is inside the header.</li>
+              <li class="fragment fade-right">Developer B finishes first and their work is merged into
+                <span>main</span>.
+              </li>
+              <li class="fragment fade-right">Now you <span>git pull origin main</span> to get the latest changes before
+                you push your own.
+                <strong>CONFLICT!</strong>
+              </li>
+            </ul>
+          </div>
         </section>
       </section>
       <section>
-        <input type="text" id="live-code" placeholder="enter git command" />
-        <div class="mermaid">
-          <pre id="gitgraph-container">
-          </pre>
-        </div>
-        <aside class="notes" aria-label="notes">
-          This is Git & GitHub code block example with syntax highlighting and
-          line numbers. Don't forget to include the necessary CSS and JS files
-          for syntax highlighting.
-        </aside>
+        <section>
+          <h4 class="r-fit-text">Anatomy of a Conflict</h4>
+        </section>
+        <section>
+          <p>Your terminal will stop and show you this:</p>
+          <pre style="font-size: x-large;">
+          <code class="language-java" data-noescape>
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+          </code>
+        </pre>
+        </section>
+        <section>
+          <p style="font-size: xx-large;">Git has paused the merge and marked the file with conflict markers.
+            Open <span>index.html</span> in your code editor. You will see something like this:</p>
+          <pre style="font-size: large;">
+          <code class="language-html" data-noescape="true">
+                            <<<<<<< HEAD
+                            &ltheader&gt
+                              &lta href="/"&gtLogo&lt/a&gt
+                              &ltnav>
+                                &lta href="/home"&gtHome&lt/a&gt
+                              &lt/nav&gt
+                            &lt/header&gt
+                            =======
+                            &lth1>
+                              &lta href="/"&gtLogo&lt/a&gt
+                              &ltnav&gt
+                                &lta href="/home"&gtHome&lt/a&gt
+                                &lta href="/about"&gtAbout Us&lt/a&gt
+                              &lt/nav&gt
+                            &lt/h1&gt
+                            >>>>>>> origin/main
+          </code>
+        </pre>
+        </section>
+        <section>
+          <div style="font-size: xx-large;">
+            <p style="text-align: left;"><strong>Here's how to read this:</strong></p>
+            <ul>
+              <li class="fragment fade-right">The section between <span>&lt&lt&lt&lt&lt&lt HEAD</span> and
+                <span>=======</span> is your code
+                (the changes on your current branch).
+              </li>
+              <li class="fragment fade-right">The section between <span>=======</span> and <span>&gt&gt&gt&gt&gt&gt
+                  origin/main</span> is the other
+                developer's code (the changes from the branch you are merging in).</li>
+              <li class="fragment fade-right">Your task is to manually edit this file to resolve the conflict. You need
+                to decide how to combine
+                these changes.</li>
+            </ul>
+          </div>
+        </section>
       </section>
-    </div>
+      <section>
+        <section>
+          <h4 class="r-fit-text">Conflict Resolution: Strategy 1 (The Manual Edit)</h4>
+        </section>
+        <section>
+          <div style="font-size: xx-large;">
+            <p style="text-align: left;">You can resolve this with any text editor. Your job is to be the final arbiter.
+            </p>
+            <ol>
+              <li class="fragment fade-right"><strong>Analyze the intent:</strong> You wanted to change the tag to
+                <span>&ltheader&gt</span>. They wanted to add an <span>/about</span> link.
+              </li>
+              <li class="fragment fade-right"><strong>Craft the final version:</strong> The correct outcome is to have
+                <strong>both</strong> changes.
+              </li>
+              <li class="fragment fade-right"><strong>Delete everything else:</strong> Manually edit the file to look
+                like the desired final state,
+                and <strong>delete all the conflict marker lines</strong> (<span>&lt&lt&lt</span>, <span>===</span>,
+                <span>&gt&gt&gt</span>).
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <p>The final, correct code should be:</p>
+          <pre>
+            <code data-noescape="true">
+                &ltheader&gt
+                  &lta href="/"&gtLogo&lt/a&gt
+                  &ltnav&gt
+                    &lta href="/home"&gtHome&lt/a&gt
+                    &lta href="/about"&gtAbout Us&lt/a&gt
+                  &lt/nav&gt
+                &lt/header&gt
+            </code>
+          </pre>
+        </section>
+        <section>
+          <p class="r-fit-text"><strong>Finalizing the Merge:</strong></p>
+          <ol style="font-size: xx-large;">
+            <li class="fragment fade-right">After saving the file, you need to stage it: <span>git add
+                index.html</span>.</li>
+            <li class="fragment fade-right">Then, complete the merge with a commit: <span>git commit</span>. Git will
+              auto-generate a merge commit message, which you can edit if you want.</li>
+            <li class="fragment fade-right">Finally, push your updated branch to GitHub: <span>git push origin
+                feat/my-cool-feature</span>.</li>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h4 class="r-fit-text">Conflict Resolution: Strategy 2 (The IDE-Assisted Edit)</h4>
+          <p style="font-size: xx-large;">Modern code editors like VS Code make this process much easier and safer.</p>
+        </section>
+        <section>
+          <div style="font-size: xx-large;">
+            <p style="text-align: left;">When you open the conflicted file in VS Code:</p>
+          <ul>
+            <li class="fragment fade-right">It will highlight your changes (<span>Current Change</span>) in green.</li>
+            <li class="fragment fade-right">It will highlight their changes (<span>Incoming Change</span>) in blue.</li>
+            <li class="fragment fade-right">
+              Directly above each conflicting block, VS Code provides clickable actions:
+              <ul>
+                <li class="fragment fade-right"><strong>Accept Current Change:</strong> Throws away their work and keeps only yours.</li>
+                <li class="fragment fade-right"><strong>Accept Incoming Change:</strong> Throws away your work and keeps only theirs.</li>
+                <li class="fragment fade-right"><strong>Accept Both Changes:</strong> Attempts to place both versions in the file, one after the other.</li>
+                <li class="fragment fade-right"><strong>Compare Changes:</strong> Opens a side-by-side diff view for easier analysis.</li>
+              </ul>
+            </li>
+          </ul>
+          </div>
+        </section>
+      </section>
+      <section>
+        <h2 class="r-fit-text">Module 6: <br>Advanced Tools & Concepts</h2>
+        <p style="font-size: xx-large;">
+          This section covers the careful introduction to <span>git rebase</span>, explaining what it is, 
+          its use cases for cleaning local history, and the golden rule of never rebasing shared branches, as detailed previously.
+        </p>
+      </section>
+    </section>
   </div>
 
   <script src="../dist/reveal.js"></script>
