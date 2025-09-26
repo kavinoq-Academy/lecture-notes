@@ -1,189 +1,227 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kavinoq Academy | Lesson Notes</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+      }
 
-        /* Header Styles */
-        header {
-            background: #3498db;
-            /* A vibrant blue */
-            color: #fff;
-            padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+      /* Header Styles */
+      header {
+        background: #3498db;
+        /* A vibrant blue */
+        color: #fff;
+        padding: 2rem 0;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
 
-        header p {
-            font-size: 1.1rem;
-            color: #ecf0f1;
-            margin-bottom: 0;
-        }
+      header p {
+        font-size: 1.1rem;
+        color: #ecf0f1;
+        margin-bottom: 0;
+      }
 
-        /* Navigation Styles */
-        nav {
-            background: #fff;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+      /* Navigation Styles */
+      nav {
+        background: #fff;
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: flex-start;
-            overflow-x: auto;
-            /* Enable horizontal scrolling */
-        }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+      }
 
-        nav li {
-            margin: 0 1rem;
-        }
+      nav li {
+        margin: 0 1rem;
+      }
 
-        nav a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: block;
-            white-space: nowrap;
-            /* Prevent text from wrapping */
-        }
+      nav a {
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        display: block;
+        white-space: nowrap;
+        /* Prevent text from wrapping */
+      }
 
-        nav a:hover {
-            color: #3498db;
-            background-color: #f0f0f0;
-        }
+      nav a:hover {
+        color: #3498db;
+        background-color: #f0f0f0;
+      }
 
-        /* Container Styles */
-        .container {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+      /* Container Styles */
+      .container {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-        /* Section Styles */
-        section {
-            margin-bottom: 2rem;
-            background-color: #fff;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border-radius: 5px;
-        }
+      /* Section Styles */
+      section {
+        margin-bottom: 2rem;
+        background-color: #fff;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+      }
 
-        section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #2c3e50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
-        }
+      section h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: #2c3e50;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 0.5rem;
+      }
 
-        /* List Styles */
-        .resource-list {
-            list-style: none;
-            padding: 0;
-        }
+      /* List Styles */
+      .resource-list {
+        list-style: none;
+        padding: 0;
+      }
 
-        .resource-list li {
-            margin-bottom: 0.7rem;
-        }
+      .resource-list li {
+        margin-bottom: 0.7rem;
+      }
 
-        .resource-list li a {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background-color: #f9f9f9;
-            color: #333;
-            text-decoration: none;
-            border-left: 5px solid #3498db;
-            transition: background-color 0.3s ease, border-left-color 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
+      .resource-list li a {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background-color: #f9f9f9;
+        color: #333;
+        text-decoration: none;
+        border-left: 5px solid #3498db;
+        transition:
+          background-color 0.3s ease,
+          border-left-color 0.3s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
 
-        .resource-list li a:hover {
-            background-color: #f0f0f0;
-            border-left-color: #2980b9;
-        }
+      .resource-list li a:hover {
+        background-color: #f0f0f0;
+        border-left-color: #2980b9;
+      }
 
-        .resource-list li a i {
-            margin-right: 1rem;
-            color: #3498db;
-        }
+      .resource-list li a i {
+        margin-right: 1rem;
+        color: #3498db;
+      }
 
-        /* Footer Styles */
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #34495e;
-            color: #fff;
-            font-size: 0.9rem;
-        }
+      /* Footer Styles */
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background-color: #34495e;
+        color: #fff;
+        font-size: 0.9rem;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <h1>Kavinoq Academy Backend (NestJS) - Lesson Notes</h1>
-        <p>Your comprehensive resource for Backend (NodeJS) lessons.</p>
+      <h1>Kavinoq Academy Backend (NestJS) - Lesson Notes</h1>
+      <p>Your comprehensive resource for Backend (NodeJS) lessons.</p>
     </header>
 
     <nav>
-        <ul>
-            <li><a href="#week1">Week 1</a></li>
-            <li><a href="#week2">Week 2</a></li>
-        </ul>
+      <ul>
+        <li><a href="#week1">Week 1</a></li>
+        <li><a href="#week2">Week 2</a></li>
+        <li><a href="#week3">Week 3</a></li>
+      </ul>
     </nav>
 
     <div class="container">
-        <section id="week1">
-            <h2>Week 1</h2>
-            <ul class="resource-list">
-                <li><a href="week1/notes.pdf"><i class="fas fa-file-pdf"></i> Lesson Notes</a></li>
-                <li><a href="week1/slides.html"><i class="fas fa-slideshare"></i> Slides</a></li>
-            </ul>
-        </section>
+      <section id="week1">
+        <h2>Week 1</h2>
+        <ul class="resource-list">
+          <li>
+            <a href="week1/notes.pdf"
+              ><i class="fas fa-file-pdf"></i> Lesson Notes</a
+            >
+          </li>
+          <li>
+            <a href="week1/slides.html"
+              ><i class="fas fa-slideshare"></i> Slides</a
+            >
+          </li>
+        </ul>
+      </section>
 
-        <section id="week2">
-            <h2>Week 2</h2>
-            <ul class="resource-list">
-                <li><a href="week2/notes.pdf"><i class="fas fa-file-pdf"></i> Lesson Notes</a></li>
-                <li><a href="week2/slides.html"><i class="fas fa-slideshare"></i> Slides</a></li>
-            </ul>
-        </section>
+      <section id="week2">
+        <h2>Week 2</h2>
+        <ul class="resource-list">
+          <li>
+            <a href="week2/notes.pdf"
+              ><i class="fas fa-file-pdf"></i> Lesson Notes</a
+            >
+          </li>
+          <li>
+            <a href="week2/slides.html"
+              ><i class="fas fa-slideshare"></i> Slides</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section id="week3">
+        <h2>Week 3</h2>
+        <ul class="resource-list">
+          <li>
+            <a href="week3/notes.pdf"
+              ><i class="fas fa-file-pdf"></i> Lesson Notes</a
+            >
+          </li>
+          <li>
+            <a href="week3/slides.html"
+              ><i class="fas fa-slideshare"></i> Slides</a
+            >
+          </li>
+        </ul>
+      </section>
     </div>
 
     <footer>
-        <p>&copy; 2025 Kavinoq Academy Backend (NestJS) - Lesson Notes</p>
+      <p>&copy; 2025 Kavinoq Academy Backend (NestJS) - Lesson Notes</p>
     </footer>
-</body>
-
+  </body>
 </html>
+

@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Kavinoq | Git & GitHub</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+
+    <link rel="stylesheet" href="../dist/reset.css" />
+    <link rel="stylesheet" href="../dist/reveal.css" />
+    <link rel="stylesheet" href="../dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="../plugin/highlight/atom-one-dark-reasonable.css"
+    />
+
+    <!-- Font awesome is required for the chalkboard plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Custom controls plugin is used to for opening and closing annotation modes. -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/plugin.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/style.css"
+    />
+    <!-- Chalkboard plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css"
+    />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../plugin/editor/style.css" />
+    <script src="../plugin/editor/revealeditor.js"></script>
+    <style>
+      header {
+        background: #fff;
+        padding: 0.1em 0.4em;
+        text-align: center;
+      }
+
+      header a {
+        font-size: 1em;
+        text-decoration: none;
+      }
+
+      #gitgraph-container {
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 4px;
+        background: #f9f9f9;
+      }
+
+      /* --- Advanced "Terminal" Input Style --- */
+      #live-code {
+        /* Sizing & Box Model */
+        box-sizing: border-box;
+        width: 80%;
+        /* Increased left padding to make space for the icon */
+        padding: 12px 20px 12px 45px;
+        margin-top: 20px;
+        position: relative;
+        /* Needed for icon positioning if you use another method */
+
+        /* Font & Appearance */
+        font-family: "Fira Code", "Consolas", monospace;
+        font-size: 1.1rem;
+        color: #33ff99;
+        /* Classic green terminal text */
+        background-color: #1a1a1a;
+        border: none;
+        /* A borderless, flat look */
+        border-bottom: 2px solid #555;
+        /* Underline style */
+        border-radius: 0;
+        /* Sharp corners for a classic terminal look */
+        outline: none;
+
+        /* Add the '>' symbol using an SVG background image */
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23888" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>');
+        background-repeat: no-repeat;
+        background-position: left 15px center;
+        /* Position the icon */
+
+        /* Smooth transition for focus effect */
+        transition: border-color 0.2s ease-in-out;
+      }
+
+      /* Style for the placeholder text */
+      #live-code::placeholder {
+        color: #888;
+        opacity: 1;
+      }
+
+      /* Style when the input is focused */
+      #live-code:focus {
+        border-bottom-color: #33ff99;
+        /* Match border color to text color on focus */
+      }
+
+      span {
+        color: #33ff99;
+      }
+    </style>
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <header>
+      <a class="btn"> RevealEditor </a>
+    </header>
+    <div class="reveal">
+      <section class="slides">
+        <!-- Title Slide -->
+        <section>
+          <section>
+            <h2 class="r-fit-text">Month 1, Week 3</h2>
+          </section>
+          <section>
+            <h1>The Art of Instruction: An Introduction to Programming</h1>
+            <p>
+              Today, we stop being users of technology and start becoming its
+              creators.
+            </p>
+          </section>
+        </section>
+
+        <!-- Module 1: The Language of Logic -->
+        <section>
+          <section>
+            <h2>Module 1</h2>
+            <h3>The Language of Logic</h3>
+          </section>
+          <section>
+            <h3>What, Really, IS Programming?</h3>
+            <p>Imagine you have a house help who is:</p>
+            <ul>
+              <li class="fragment">Incredibly fast and perfectly obedient.</li>
+              <li class="fragment">
+                Completely, utterly dumb. Zero common sense.
+              </li>
+            </ul>
+            <p class="fragment">
+              Programming is the art of writing perfect, unambiguous
+              instructions for our dumb but fast house help:
+              <strong>the computer</strong>.
+            </p>
+            <aside class="notes">
+              Use the "get the milk" analogy here. Emphasize how specific the
+              instructions had to be. This builds the core mental model.
+            </aside>
+          </section>
+          <section>
+            <h3>The Problem with Human Language</h3>
+            <p>Consider the sentence:</p>
+            <blockquote class="fragment">
+              "I saw the man on the hill with a telescope."
+            </blockquote>
+            <ul>
+              <li class="fragment">Did you use a telescope to see the man?</li>
+              <li class="fragment">
+                Did the man on the hill have a telescope?
+              </li>
+              <li class="fragment">
+                Is the hill itself topped with a telescope?
+              </li>
+            </ul>
+            <p class="fragment">
+              A computer cannot guess. It needs a language where every word and
+              symbol has <strong>one, and only one, meaning.</strong>
+            </p>
+          </section>
+          <section>
+            <h3>High-Level vs. Low-Level Languages</h3>
+            <ul>
+              <li>
+                <strong>Low-Level (Machine Code):</strong> The computer's native
+                tongue (1s and 0s). Incredibly difficult for humans.
+              </li>
+              <li class="fragment">
+                <strong>High-Level (JavaScript, Python):</strong> Designed to be
+                readable by humans, using words like <span>if</span>,
+                <span>for</span>, and <span>function</span>.
+              </li>
+            </ul>
+            <p class="fragment">
+              We need a special program called an
+              <strong>Interpreter</strong> to translate our high-level
+              JavaScript into low-level machine code the computer can execute.
+            </p>
+          </section>
+        </section>
+
+        <!-- Module 2: Our Programming Environments -->
+        <section>
+          <section>
+            <h2>Module 2</h2>
+            <h3>Our Programming Environments</h3>
+            <aside class="notes">
+              The goal here is to show them that JavaScript can run in multiple
+              places and to have them write their very first line of code.
+            </aside>
+          </section>
+          <section>
+            <h3>Where Does JavaScript Live?</h3>
+            <ol>
+              <li>
+                <strong>The Browser Developer Console</strong> (Our instant
+                scratchpad)
+              </li>
+              <li>
+                <strong>A <span>.js</span> File via Node.js</strong> (Our
+                server-side home)
+              </li>
+              <li>
+                <strong>A <span>&ltscript&gt</span> Tag in an HTML File</strong>
+                (The traditional web context)
+              </li>
+            </ol>
+          </section>
+          <section>
+            <h3>The Universal Greeting: <span>console.log()</span></h3>
+            <p>
+              In programming, the first thing you learn is how to make the
+              computer display a message.
+            </p>
+            <pre><code class="language-javascript" data-trim data-noescape>
+                        console.log('Hello, World!');
+                    </code></pre>
+            <ul>
+              <li>
+                <span>console</span> An object representing the developer
+                console.
+              </li>
+              <li>
+                <span>.log()</span>: An action (a function) that prints whatever
+                you put inside the parentheses.
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Environment 1: The Browser Console</h3>
+            <p>The fastest way to get feedback.</p>
+            <ol>
+              <li>Open Chrome/Firefox.</li>
+              <li>
+                Open Developer Tools (<code>Ctrl+Shift+I</code> or
+                <code>Cmd+Option+I</code>).
+              </li>
+              <li>Click the "Console" tab.</li>
+              <li>Type your code and press Enter.</li>
+            </ol>
+            <pre><code class="language-javascript" data-trim data-noescape>
+                        > console.log('Hello from the browser console!');
+                    </code></pre>
+            <aside class="notes">
+              Have every student do this live. It's their first win.
+            </aside>
+          </section>
+          <section>
+            <h3>Environment 2: Node.js</h3>
+            <p>This is how we'll run most of our code.</p>
+            <ol>
+              <li>
+                Open your terminal and create a file: <code>touch app.js</code>
+              </li>
+              <li>Open <span>app.js</span> in VS Code.</li>
+              <li>
+                Write the code: <br /><code
+                  >console.log('Hello from a Node.js file!');</code
+                >
+              </li>
+              <li>Save the file.</li>
+              <li>Go back to the terminal and execute the file:</li>
+            </ol>
+            <pre><code class="language-bash" data-trim data-noescape>
+                        $ node app.js
+                        Hello from a Node.js file!
+                    </code></pre>
+            <aside class="notes">
+              Walk through this step-by-step. This reinforces their command-line
+              skills and introduces the server-side context.
+            </aside>
+          </section>
+        </section>
+
+        <!-- Module 3: Data Types -->
+        <section>
+          <section>
+            <h2>Module 3</h2>
+            <h3>The Atoms of Information: Values & Data Types</h3>
+          </section>
+          <section>
+            <h3>Primitive Data Types</h3>
+            <p>
+              The most basic, indivisible pieces of data. The fundamental
+              building blocks, like atoms.
+            </p>
+            <ul>
+              <li><code>Number</code> (for math)</li>
+              <li><code>String</code> (for text)</li>
+              <li><code>Boolean</code> (for truth)</li>
+              <li><code>undefined</code> (accidental emptiness)</li>
+              <li><code>null</code> (intentional emptiness)</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Data Type: <code>Number</code></h3>
+            <ul>
+              <li>
+                <strong>Purpose:</strong> For all mathematical operations.
+              </li>
+              <li>
+                <strong>Represents:</strong> Integers, decimals, positive, and
+                negative numbers.
+              </li>
+            </ul>
+            <pre><code class="language-javascript" data-trim data-noescape>
+                        10
+                        -55
+                        3.14159
+                        // Try this in the console:
+                        100 + 50 * 2 // result is 200
+                    </code></pre>
+          </section>
+          <section>
+            <h3>Data Type: <code>String</code></h3>
+            <ul>
+              <li><strong>Purpose:</strong> For representing text.</li>
+              <li><strong>How to create:</strong> Wrap text in quotes.</li>
+            </ul>
+            <pre><code class="language-javascript" data-trim data-noescape>
+                        'Hello' // Single quotes
+                        "World" // Double quotes
+                        `This is special!` // Backticks (Template Literals)
+
+                        // Concatenation (joining strings)
+                        'Hello' + ' ' + 'World' // results in 'Hello World'
+                    </code></pre>
+          </section>
+          <section>
+            <h3>Data Type: <code>Boolean</code></h3>
+            <ul>
+              <li>
+                <strong>Purpose:</strong> For representing logic and truth.
+              </li>
+              <li>
+                <strong>The Only Two Values:</strong> <code>true</code> and
+                <code>false</code>.
+              </li>
+              <li class="fragment">
+                <strong>Crucial Note:</strong> These are special keywords, not
+                strings. <code>true</code> is very different from
+                <code>'true'</code>.
+              </li>
+            </ul>
+            <p class="fragment">
+              Booleans are the foundation of decision-making in code.
+            </p>
+          </section>
+          <section>
+            <h3>
+              The "Empty" Types: <code>undefined</code> vs. <code>null</code>
+            </h3>
+            <p>Both represent emptiness, but in different ways.</p>
+            <ul>
+              <li class="fragment">
+                <strong><code>undefined</code></strong>
+                <ul>
+                  <li>
+                    <strong>Meaning:</strong> "A value has not been assigned."
+                    It's the default state, an accidental emptiness.
+                  </li>
+                </ul>
+              </li>
+              <li class="fragment">
+                <strong><code>null</code></strong>
+                <ul>
+                  <li>
+                    <strong>Meaning:</strong> "There is no value here, and this
+                    is intentional." It's a value you, the programmer,
+                    explicitly assign.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <aside class="notes">
+              Use the "butler and the teacup" analogy here. Undefined is when he
+              doesn't know what teacup you mean. Null is when you tell him to
+              bring you "null" if the specific teacup isn't there.
+            </aside>
+          </section>
+        </section>
+
+        <!-- Module 4: Variables -->
+        <section>
+          <section>
+            <h2>Module 4</h2>
+            <h3>Storing Information: Variables</h3>
+          </section>
+          <section>
+            <h3>The "Labeled Jars" Analogy</h3>
+            <p>
+              Variables are named containers for storing data values. They are
+              the labeled jars in our programming kitchen, bringing order to the
+              chaos of raw data.
+            </p>
+          </section>
+          <section>
+            <h3>Declaration & Assignment</h3>
+            <p>Working with variables is a two-step process:</p>
+            <ol>
+              <li>
+                <strong>Declaration:</strong> Creating the jar and giving it a
+                label.
+              </li>
+              <pre><code class="language-javascript" data-trim data-noescape>
+                            let myAge; // Jar "myAge" is created. It's empty (undefined).
+                        </code></pre>
+              <li>
+                <strong>Assignment:</strong> Putting a value into the jar with
+                the <code>=</code> operator.
+              </li>
+              <pre><code class="language-javascript" data-trim data-noescape>
+                            myAge = 30; // The number 30 is now in the "myAge" jar.
+                        </code></pre>
+            </ol>
+            <p>You can also do both at once (initialization):</p>
+            <pre><code class="language-javascript" data-trim data-noescape>
+                        let myName = 'The Architect';
+                    </code></pre>
+          </section>
+          <section>
+            <h3>
+              The Keywords: <code>let</code>, <code>const</code>, and
+              <code>var</code>
+            </h3>
+            <ul>
+              <li class="fragment">
+                <strong><code>let</code></strong
+                >: The standard. Use for variables whose value
+                <strong>can change</strong>.
+                <pre><code class="language-javascript" data-trim data-noescape>
+                                let score = 0;
+                                score = 100; // Allowed
+                            </code></pre>
+              </li>
+              <li class="fragment">
+                <strong><code>const</code></strong
+                >: The safeguard. Use for variables whose value
+                <strong>will not change</strong>.
+                <pre><code class="language-javascript" data-trim data-noescape>
+                                const birthYear = 1990;
+                                // birthYear = 1991; // ERROR!
+                            </code></pre>
+              </li>
+              <li class="fragment">
+                <strong><code>var</code></strong
+                >: The old way. Has confusing behavior.
+                <strong>We will not use it.</strong>
+              </li>
+            </ul>
+            <p class="fragment">
+              <strong>Best Practice:</strong> Use <code>const</code> by default.
+              Only use <code>let</code> when you know you'll need to re-assign
+              the value.
+            </p>
+          </section>
+        </section>
+
+        <!-- Module 5 & 6: Operators and Control Flow -->
+        <section>
+          <section>
+            <h2>Modules 5 & 6</h2>
+            <h3>Making Decisions: Operators & Control Flow</h3>
+          </section>
+          <section>
+            <h3>Asking Questions: Comparison Operators</h3>
+            <p>
+              These operators compare two values and always result in a
+              <strong>boolean</strong> (<code>true</code> or
+              <code>false</code>).
+            </p>
+            <ul>
+              <li>
+                <code>===</code> : Strict equality (Are the value AND type the
+                same?)
+              </li>
+              <li><code>!==</code> : Strict inequality</li>
+              <li><code>></code> : Greater than</li>
+              <li><code><</code> : Less than</li>
+              <li><code>>=</code> : Greater than or equal to</li>
+              <li><code><=</code> : Less than or equal to</li>
+            </ul>
+            <p>
+              <strong>Golden Rule:</strong> Always use strict equality
+              (<span>===</span>). Avoid loose equality (<span>==</span>) which
+              can have confusing behavior (e.g., <span>77 == '77'</span> is
+              true!).
+            </p>
+          </section>
+          <section>
+            <h3>Combining Questions: Logical Operators</h3>
+            <ul>
+              <li>
+                <strong><code>&&</code> (AND)</strong>: Is the condition on the
+                left AND the condition on the right true? (Both must be true)
+              </li>
+              <li class="fragment">
+                <strong><code>||</code> (OR)</strong>: Is the condition on the
+                left OR the condition on the right true? (At least one must be
+                true)
+              </li>
+              <li class="fragment">
+                <strong><code>!</code> (NOT)</strong>: Flips a boolean value.
+                <span>!true</span> becomes <span>false</span>.
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Making Decisions: <code>if / else</code></h3>
+            <p>
+              This is the heart of programming. It allows our "butler" to take
+              different paths based on the answers to our questions.
+            </p>
+            <pre><code class="language-javascript" data-trim data-noescape>
+                        const age = 20;
+
+                        if (age >= 18) {
+                            console.log('You are eligible to vote.');
+                        } else {
+                            console.log('You are not yet eligible to vote.');
+                        }
+                    </code></pre>
+          </section>
+          <section>
+            <h3>
+              Handling Multiple Paths: <span>if</span>, <span>else if</span>,
+              <span>else</span>
+            </h3>
+            <pre><code class="language-javascript" data-trim data-noescape data-line-numbers>
+                        const score = 85;
+
+                        if (score &gt= 90) {
+                            console.log('You get an A!');
+                        } else if (score &gt= 80) {
+                            console.log('You get a B!');
+                        } else if (score &gt= 70) {
+                            console.log('You get a C.');
+                        } else {
+                            console.log('You need to study more.');
+                        }
+                </code></pre>
+            <aside class="notes">
+              Explain that the code executes the FIRST true block it finds and
+              then stops. Order matters.
+            </aside>
+          </section>
+        </section>
+
+        <!-- Module 7: The First Creation -->
+        <section>
+          <section>
+            <h2>Module 7</h2>
+            <h3>The First Creation: In-Class Exercise</h3>
+            <p>
+              Let's apply everything we've learned to build an interactive
+              story.
+            </p>
+          </section>
+        </section>
+      </section>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/zoom/zoom.js"></script>
+    <script src="../plugin/editor/src-min-noconflict/ace.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        center: true,
+
+        customcontrols: {
+          controls: [
+            {
+              icon: '<i class="fa fa-pen-square"></i>',
+              title: "Toggle chalkboard (B)",
+              action: "RevealChalkboard.toggleChalkboard();",
+            },
+            {
+              icon: '<i class="fa fa-pen"></i>',
+              title: "Toggle notes canvas (C)",
+              action: "RevealChalkboard.toggleNotesCanvas();",
+            },
+          ],
+        },
+        chalkboard: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealZoom,
+          RevealChalkboard,
+          RevealCustomControls,
+        ],
+      });
+      $(".btn").RevealEditor();
+    </script>
+  </body>
+</html>
