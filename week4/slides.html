@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>M1, W4: JavaScript Core (Part 2) - Deep Dive</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css"
+      id="theme"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/monokai-sublime.min.css"
+    />
+    <!-- Font awesome is required for the chalkboard plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Custom controls plugin is used to for opening and closing annotation modes. -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/plugin.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/style.css"
+    />
+    <!-- Chalkboard plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css"
+    />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+    <style>
+      .reveal .slides section {
+        text-align: left;
+      }
+      .reveal h1,
+      .reveal h2,
+      .reveal h3 {
+        text-align: center;
+      }
+      .reveal pre {
+        width: 100%;
+        margin: 20px auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .reveal code {
+        max-height: 600px;
+      }
+      .reveal .quiz-container {
+        margin-top: 20px;
+      }
+      .reveal .quiz-question {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      .reveal .quiz-hint {
+        font-size: 0.8em;
+        font-style: italic;
+        margin-top: 10px;
+        opacity: 0.7;
+      }
+      .reveal .quiz-options {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+      }
+      .reveal .quiz-options li {
+        background: #333;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .reveal .quiz-options li:hover {
+        background: #555;
+      }
+      .reveal .quiz-rationale {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 0.8em;
+      }
+      .reveal .quiz-options li.correct .quiz-rationale {
+        background: #285a34;
+      }
+      .reveal .quiz-options li.incorrect .quiz-rationale {
+        background: #6b2828;
+      }
+
+      span {
+        color: #33ff99;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2 class="r-fit-text">Month 1, Week 4</h2>
+          <h1 style="font-size: larger">
+            JavaScript - The Language Core (Part 2)
+          </h1>
+          <p style="text-align: center; margin-top: 40px">
+            Repetition, Reusability, and Collections
+          </p>
+        </section>
+
+        <!-- Module 0: Week 3 Deep Dive Review -->
+        <section>
+          <section>
+            <h3 class="r-fit-text">Module 0: Week 3 Review</h3>
+            <h2 style="font-size: xx-large">
+              Solidifying Our Logical Foundation
+            </h2>
+          </section>
+          <section>
+            <h4>Recap: The Brain of a Program</h4>
+            <p>
+              In Week 3, we learned that a program's "intelligence" comes from
+              its ability to make decisions. This is <span>Control Flow</span>.
+            </p>
+            <p>
+              Every decision boils down to a single question that results in
+              <span>true</span> or <span>false</span> (a **Boolean
+              Expression**).
+            </p>
+            <pre><code data-trim data-noescape class="javascript">
+                        const userAge = 25;
+                        const hasAccount = true;
+                        
+                        // A complex boolean expression
+                        const canAccessContent = hasAccount && (userAge >= 18); // true
+                    </code></pre>
+          </section>
+          <section>
+            <h4>Deep Dive: Truthy & Falsy</h4>
+            <p>
+              A condition (<span>if (...)</span>) doesn't strictly need
+              <span>true</span>true` to pass. It only needs a "truthy" value.
+            </p>
+            <p>JavaScript has only **6 Falsy Values**. Memorize them.</p>
+            <ul style="font-size: xx-large">
+              <li><span>false</span></li>
+              <li><span>0</span></li>
+              <li><span>""</span> or <code>''</code> (an empty string)</li>
+              <li><span>null</span></li>
+              <li><span>undefined</span></li>
+              <li><span>NaN</span> (Not-a-Number)</li>
+            </ul>
+            <p class="fragment" style="font-size: xx-large">
+              <strong>Everything else is Truthy!</strong> (e.g.,
+              <span>'hello'</span>, <span>52</span>, <span>[]</span>,
+              <span>{}</span>, <span>'false'</span>)
+            </p>
+          </section>
+          <section>
+            <h4>Deep Dive: <span>switch</span> Statement</h4>
+            <p style="font-size: xx-large">
+              Use a <span>switch</span> statement as a clean alternative to a
+              long <span>if/else if</span> chain when checking a **single
+              variable** against multiple **specific, exact values**.
+            </p>
+            <pre
+              style="font-size: xx-large"
+            ><code data-trim data-noescape class="javascript">
+                        const httpStatusCode = 404;
+                        let message;
+
+                        switch (httpStatusCode) {
+                            case 200:
+                                message = 'OK';
+                                break; // The 'break' is crucial! It exits the switch.
+                            case 403:
+                                message = 'Forbidden';
+                                break;
+                            case 404:
+                                message = 'Not Found';
+                                break;
+                            default: // Runs if no other case matches.
+                                message = 'Unknown Status Code';
+                        }
+                        // message is now 'Not Found'
+                    </code></pre>
+          </section>
+        </section>
+
+        <!-- Module 1: Loops -->
+        <section>
+          <section>
+            <h3 class="r-fit-text">Module 1: Loops</h3>
+            <h2>Teaching the Computer to Repeat Itself</h2>
+          </section>
+          <section>
+            <h4>The <span>for</span> Loop</h4>
+            <p style="font-size: xx-large">
+              The classic loop, used when you know **how many times** you want
+              to repeat.
+            </p>
+            <p style="font-size: xx-large">
+              Anatomy:
+              <span>for (initialization; condition; final-expression)</span>
+            </p>
+            <pre><code data-trim data-noescape class="javascript">
+                        for (let i = 0; i < 5; i++) {
+                            console.log(`This is iteration number ${i + 1}`);
+                        }
+                    </code></pre>
+            <ol style="font-size: xx-large">
+              <li>
+                <strong>Initialization:</strong> <span>let i = 0;</span> - Runs
+                **once** at the very beginning.
+              </li>
+              <li>
+                <strong>Condition:</strong> <span>i < 5;</span> - Checked
+                **before** each iteration. If <span>false</span>, the loop
+                stops.
+              </li>
+              <li>
+                <strong>Final Expression:</strong> <span>i++</span> - Runs
+                **after** each iteration.
+              </li>
+            </ol>
+          </section>
+          <section>
+            <h4>The <span>while</span> Loop</h4>
+            <p style="font-size: xx-large">
+              Used when you want to loop as long as a condition is true, but you
+              **don't know exactly how many iterations** it will take.
+            </p>
+            <pre><code data-trim data-noescape class="javascript">
+                        let diceRoll = 0;
+                        let attempts = 0;
+                        
+                        while (diceRoll !== 6) {
+                            diceRoll = Math.floor(Math.random() * 6) + 1;
+                            attempts++;
+                            console.log(`Attempt #${attempts}: Rolled a ${diceRoll}`);
+                        }
+                        console.log(`Success! It took ${attempts} attempts to roll a 6.`);
+                    </code></pre>
+            <p style="font-size: xx-large">
+              <strong>Warning:</strong> Ensure the condition will eventually
+              become false to avoid an **infinite loop**!
+            </p>
+          </section>
+        </section>
+
+        <!-- Module 2: Functions -->
+        <section>
+          <section>
+            <h3 class="r-fit-text">Module 2: Functions</h3>
+            <h2>The Art of Reusability</h2>
+          </section>
+          <section>
+            <h4>Anatomy of a Function</h4>
+            <pre><code data-trim data-noescape class="javascript">
+                        // 1. Declaration using the 'function' keyword
+                        function greet(name) { // 'name' is a parameter
+                            // 3. The function body (the logic)
+                            const message = `Hello, ${name}!`;
+                            return message; // 4. The return statement
+                        }
+
+                        // 2. Calling the function
+                        const greetingForAlex = greet('Alex'); // 'Alex' is an argument
+                        console.log(greetingForAlex); // "Hello, Alex!"
+                    </code></pre>
+            <ul style="font-size: xx-large">
+              <li>
+                <strong>Parameters:</strong> Placeholder variables in the
+                function definition.
+              </li>
+              <li>
+                <strong>Arguments:</strong> The actual values you pass into the
+                function when you call it.
+              </li>
+              <li>
+                <strong><span>return</span> Keyword:</strong> Sends a value
+                *out* of the function. If you don't use <span>return</span>, the
+                function returns <span>undefined</span> by default.
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>Arrow Functions (<span>=&gt</span>)</h4>
+            <p>The modern, concise, and preferred way to write functions.</p>
+            <pre><code data-trim data-noescape class="javascript">
+                        // Multi-line with explicit return
+                        const subtract = (a, b) => {
+                            return a - b;
+                        };
+
+                        // Single-line with Implicit Return
+                        const multiply = (a, b) => a * b;
+
+                        console.log(subtract(10, 4)); // 6
+                        console.log(multiply(3, 7));  // 21
+                    </code></pre>
+          </section>
+        </section>
+
+        <!-- Module 3: Complex Data -->
+        <section>
+          <section>
+            <h3 class="r-fit-text">Module 3: Complex Data Structures</h3>
+            <h2 style="font-size: xx-large">
+              Storing Collections of Information
+            </h2>
+          </section>
+          <section>
+            <h4>Arrays: Ordered Lists</h4>
+            <p>
+              An array is an ordered list of values, accessed by a numerical
+              **index** (starting at <span>0</span>).
+            </p>
+            <pre><code data-trim data-noescape class="javascript">
+                        const students = ['Alex', 'Jane', 'Peter'];
+                        
+                        console.log(students[0]); // 'Alex'
+                        
+                        students.push('Maria'); // Adds to the end
+                        
+                        // Loop over an array
+                        for (let i = 0; i &lt students.length; i++) {
+                            console.log(`Welcome, ${students[i]}!`);
+                        }
+                    </code></pre>
+          </section>
+          <section>
+            <h4>Objects: Key-Value Pairs</h4>
+            <p>
+              An object is an unordered collection of related data, stored as
+              **key-value pairs**.
+            </p>
+            <pre><code data-trim data-noescape class="javascript">
+                        const student = {
+                            firstName: 'Alex',
+                            age: 22,
+                            isEnrolled: true,
+                            courses: ['CS101', 'MATH203']
+                        };
+                        
+                        // Accessing data with Dot Notation
+                        console.log(student.firstName); // 'Alex'
+                        
+                        // Modifying data
+                        student.age = 23;
+                    </code></pre>
+          </section>
+        </section>
+
+        <!-- Module 4: In-Class Quiz -->
+        <section>
+          <section>
+            <h3 class="r-fit-text">Module 4: Knowledge Check</h3>
+            <h2 style="font-size: xx-large">Interactive Quiz</h2>
+          </section>
+          <section class="quiz-slide" style="font-size: xx-large">
+            <div class="quiz-container">
+              <p class="quiz-question">
+                1. Which of the following is a "falsy" value in JavaScript?
+              </p>
+              <p class="quiz-hint">
+                Hint: Think about the value that represents the absence of a
+                number.
+              </p>
+              <ul class="quiz-options">
+                <li data-correct="false">
+                  <span class="option-text">'false'</span>
+                  <div class="quiz-rationale">
+                    This is a non-empty string, which is always a "truthy"
+                    value.
+                  </div>
+                </li>
+                <li data-correct="false">
+                  <span class="option-text">[]</span>
+                  <div class="quiz-rationale">
+                    An empty array is an object, and all objects are "truthy".
+                  </div>
+                </li>
+                <li data-correct="true">
+                  <span class="option-text">0</span>
+                  <div class="quiz-rationale">
+                    The number zero is one of the six falsy values in
+                    JavaScript.
+                  </div>
+                </li>
+                <li data-correct="false">
+                  <span class="option-text">{}</span>
+                  <div class="quiz-rationale">
+                    An empty object is still an object, and all objects are
+                    "truthy".
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="quiz-slide" style="font-size: xx-large">
+            <div class="quiz-container" style="font-size: xx-large">
+              <p class="quiz-question">
+                2. What is the final value of <span>i</span> *after* this loop
+                finishes?
+              </p>
+              <pre><code data-trim>for (let i = 0; i < 10; i++) { /* ... */ }</code></pre>
+              <p class="quiz-hint">
+                Hint: The loop stops when the condition
+                <span>i < 10</span> becomes false. What is the first value of
+                <span>i</span> that makes it false?
+              </p>
+              <ul class="quiz-options">
+                <li data-correct="false">
+                  <span class="option-text">9</span>
+                  <div class="quiz-rationale">
+                    The last iteration runs when <span>i</span> is 9. Afterward,
+                    <span>i</span> is incremented one more time.
+                  </div>
+                </li>
+                <li data-correct="false">
+                  <span class="option-text">10</span>
+                  <div class="quiz-rationale">
+                    While <span>i</span> does become 10, it is declared with
+                    <span>let</span> inside the loop, so its scope is limited to
+                    the loop block.
+                  </div>
+                </li>
+                <li data-correct="true">
+                  <span class="option-text">A ReferenceError occurs</span>
+                  <div class="quiz-rationale">
+                    The variable <span>i</span> is not accessible outside the
+                    <span>for</span> loop's block scope. Accessing it would
+                    cause a ReferenceError.
+                  </div>
+                </li>
+                <li data-correct="false">
+                  <span class="option-text">undefined</span>
+                  <div class="quiz-rationale">
+                    <span>undefined</span> is the value of an unassigned
+                    variable. In this case, the variable isn't accessible at
+                    all, leading to an error.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="quiz-slide" style="font-size: xx-large">
+            <div class="quiz-container">
+              <p class="quiz-question">
+                3. A function that does not have a <span>return</span> statement
+                will automatically return what value?
+              </p>
+              <p class="quiz-hint">
+                Hint: This value represents the state of something that has been
+                declared but not yet assigned.
+              </p>
+              <ul class="quiz-options">
+                <li data-correct="false">
+                  <span class="option-text">null</span>
+                  <div class="quiz-rationale">
+                    <span>null</span> represents the intentional absence of a
+                    value, which must be explicitly returned.
+                  </div>
+                </li>
+                <li data-correct="true">
+                  <span class="option-text">undefined</span>
+                  <div class="quiz-rationale">
+                    This is the default return value for any function that
+                    completes without hitting a <span>return</span> keyword.
+                  </div>
+                </li>
+                <li data-correct="false">
+                  <span class="option-text">false</span>
+                  <div class="quiz-rationale">
+                    A function only returns <span>false</span> if it is
+                    explicitly instructed to do so with
+                    <span>return false;</span>.
+                  </div>
+                </li>
+                <li data-correct="false">
+                  <span class="option-text">An empty string ""</span>
+                  <div class="quiz-rationale">
+                    An empty string is a specific value that must be explicitly
+                    returned.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="quiz-slide" style="font-size: xx-large">
+            <div class="quiz-container">
+              <p class="quiz-question">
+                4. How do you access the value associated with the key
+                <span>'last-name'</span>?
+              </p>
+              <pre><code data-trim>const user = { firstName: 'Jane', 'last-name': 'Doe' };</code></pre>
+              <p class="quiz-hint">
+                Hint: Dot notation does not work for property keys that contain
+                special characters like a hyphen.
+              </p>
+              <ul class="quiz-options">
+                <li data-correct="false">
+                  <span class="option-text">user.last-name</span>
+                  <div class="quiz-rationale">
+                    This would be interpreted as <span>user.last</span> minus
+                    <span>name</span>, causing an error. Dot notation cannot
+                    have hyphens.
+                  </div>
+                </li>
+                <li data-correct="true">
+                  <span class="option-text">user['last-name']</span>
+                  <div class="quiz-rationale">
+                    Bracket notation is required when an object key is a string
+                    containing special characters.
+                  </div>
+                </li>
+                <li data-correct="false">
+                  <span class="option-text">user.lastName</span>
+                  <div class="quiz-rationale">
+                    The key is defined as the string <span>'last-name'</span>,
+                    not <span>lastName</span>. Object keys are case-sensitive
+                    and must match exactly.
+                  </div>
+                </li>
+                <li data-correct="false">
+                  <span class="option-text">user[1]</span>
+                  <div class="quiz-rationale">
+                    Objects are not indexed by number like arrays; they are
+                    accessed by their string keys.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <!-- Module 5: In-Class Practical -->
+        <section>
+          <section>
+            <h3>Module 5: Practical Application</h3>
+            <h2>In-Class Exercise: The Array Processor</h2>
+          </section>
+          <section>
+            <h4>Objective & Setup</h4>
+            <p>
+              To practice looping through arrays and using functions to process
+              data.
+            </p>
+            <p>
+              Create a file <span>processor.js</span> and add the following
+              starting data:
+            </p>
+            <pre><code data-trim data-noescape class="javascript">
+                        const numbers = [22, 67, 33, 96, 88, 72, 49, 11, 53];
+                    </code></pre>
+          </section>
+          <section>
+            <h4>Tasks</h4>
+            <ol style="font-size: xx-large">
+              <li>
+                Write a function <span>calculateSum(arr)</span> that takes an
+                array, loops through it, and **returns** the sum of all its
+                numbers.
+              </li>
+              <li>
+                Write a function <span>findMax(arr)</span> that takes an array,
+                loops through it, and **returns** the largest number in the
+                array.
+              </li>
+              <li>
+                Call your functions with the <span>numbers</span> array and
+                store their results in `const` variables.
+              </li>
+              <li>
+                Calculate the average by dividing the sum by the array's length.
+              </li>
+              <li>
+                Use <span>console.log()</span> and template literals to print a
+                report of the results: "Sum: [sum], Average: [avg], Max: [max]".
+              </li>
+            </ol>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        center: true,
+
+        customcontrols: {
+          controls: [
+            {
+              icon: '<i class="fa fa-pen-square"></i>',
+              title: "Toggle chalkboard (B)",
+              action: "RevealChalkboard.toggleChalkboard();",
+            },
+            {
+              icon: '<i class="fa fa-pen"></i>',
+              title: "Toggle notes canvas (C)",
+              action: "RevealChalkboard.toggleNotesCanvas();",
+            },
+          ],
+        },
+        chalkboard: {},
+
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealChalkboard,
+          RevealCustomControls,
+        ],
+        slideNumber: true,
+      });
+
+      // Interactive Quiz Logic
+      document.querySelectorAll(".quiz-slide").forEach((slide) => {
+        const options = slide.querySelectorAll(".quiz-options li");
+        let answered = false;
+        options.forEach((option) => {
+          option.addEventListener("click", () => {
+            if (answered) return;
+            answered = true;
+            const isCorrect = option.getAttribute("data-correct") === "true";
+            option.classList.add(isCorrect ? "correct" : "incorrect");
+
+            options.forEach((opt) => {
+              const rationale = opt.querySelector(".quiz-rationale");
+              rationale.style.display = "block";
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

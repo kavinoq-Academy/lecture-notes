@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive JavaScript Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 
+        Chosen Palette: Calm Neutrals (Slate background, Sky Blue accents, Off-white text containers)
+        Application Structure Plan: An interactive learning hub with a main navigation to switch between modules (Conditionals, Loops, etc.). Each module features interactive code sandboxes and visualizers to transform passive reading into active practice, which is more effective for learning code than a static document.
+        Visualization & Content Choices: Report Info -> Goal -> Viz/Presentation Method -> Interaction -> Justification -> Library/Method. Conditionals -> Understand Truthy/Falsy -> Interactive Input Checker -> User Input -> Direct feedback reinforces learning -> Vanilla JS. Loops -> Visualize Execution -> Animated Step-through -> Button Click -> Makes abstract process concrete -> Vanilla JS. Data Structures -> Manipulate Data -> Interactive Array/Object Playground -> Button/Form Input -> Hands-on practice builds muscle memory -> Vanilla JS.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .content-section {
+        display: none;
+      }
+      .content-section.active {
+        display: block;
+      }
+      .nav-link {
+        transition: all 0.2s ease-in-out;
+      }
+      .nav-link.active {
+        background-color: #0284c7; /* sky-600 */
+        color: white;
+        font-weight: 600;
+      }
+      .interactive-code {
+        font-family: "Courier New", Courier, monospace;
+        background-color: #1e293b;
+        color: #e2e8f0;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        white-space: pre-wrap;
+        font-size: 0.9em;
+      }
+      .output-box {
+        font-family: "Courier New", Courier, monospace;
+        background-color: #334155;
+        color: #f1f5f9;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        min-height: 40px;
+        white-space: pre-wrap;
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #0ea5e9; /* sky-500 */
+        color: white;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .btn:hover {
+        background-color: #0284c7; /* sky-600 */
+      }
+      .card {
+        background-color: #1e293b;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        border: 1px solid #334155;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-900 text-slate-200">
+    <div class="flex flex-col md:flex-row min-h-screen">
+      <!-- Sidebar Navigation -->
+      <nav class="w-full md:w-64 bg-slate-800 p-4 space-y-2 shrink-0">
+        <h1 class="text-2xl font-bold text-white text-center md:text-left">
+          JS Core Guide
+        </h1>
+        <a href="#" class="nav-link block p-3 rounded-lg" data-target="intro"
+          >Introduction</a
+        >
+        <a
+          href="#"
+          class="nav-link block p-3 rounded-lg"
+          data-target="conditionals"
+          >M0: Conditionals</a
+        >
+        <a href="#" class="nav-link block p-3 rounded-lg" data-target="loops"
+          >M1: Loops</a
+        >
+        <a
+          href="#"
+          class="nav-link block p-3 rounded-lg"
+          data-target="functions"
+          >M2: Functions</a
+        >
+        <a
+          href="#"
+          class="nav-link block p-3 rounded-lg"
+          data-target="data-structures"
+          >M3: Data Structures</a
+        >
+        <a
+          href="#"
+          class="nav-link block p-3 rounded-lg"
+          data-target="assignment"
+          >M4: Assignment</a
+        >
+      </nav>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6 sm:p-8 md:p-10">
+        <!-- Introduction Section -->
+        <section id="intro" class="content-section active">
+          <h2 class="text-4xl font-bold text-sky-400 mb-4">
+            Welcome, Architect!
+          </h2>
+          <p class="text-lg text-slate-300 max-w-3xl">
+            This interactive hub brings the "Unabridged Learning Guide" to life.
+            Instead of just reading, you'll run code, visualize concepts, and
+            build your understanding hands-on. Use the navigation on the left to
+            explore the modules. Each section contains interactive examples
+            designed to transform theory into practical skill. Let's begin
+            building.
+          </p>
+        </section>
+
+        <!-- Conditionals Section -->
+        <section id="conditionals" class="content-section">
+          <h2 class="text-3xl font-bold text-sky-400 mb-6">
+            Module 0: Revisiting Conditionals
+          </h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-4 text-white">
+                Interactive Truthy/Falsy Checker
+              </h3>
+              <p class="text-slate-400 mb-4">
+                Enter a JavaScript value (e.g., `0`, `""`, `[]`, `'hello'`) to
+                see if it's truthy or falsy.
+              </p>
+              <input
+                id="truthy-input"
+                type="text"
+                class="w-full bg-slate-700 p-2 rounded-md border border-slate-600 focus:ring-2 focus:ring-sky-500 focus:outline-none"
+                placeholder="Enter a value like [] or 'false'"
+              />
+              <button id="truthy-btn" class="btn mt-4">Check Value</button>
+              <div id="truthy-output" class="output-box">
+                Result will appear here.
+              </div>
+            </div>
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-4 text-white">
+                Switch Statement Visualizer
+              </h3>
+              <p class="text-slate-400 mb-4">
+                Select a user role to see how a `switch` statement, including
+                "fall-through," directs the program's flow.
+              </p>
+              <select
+                id="switch-select"
+                class="w-full bg-slate-700 p-2 rounded-md border border-slate-600 focus:ring-2 focus:ring-sky-500 focus:outline-none"
+              >
+                <option value="admin">Admin</option>
+                <option value="editor">Editor</option>
+                <option value="viewer">Viewer</option>
+                <option value="guest">Guest (Default)</option>
+              </select>
+              <div id="switch-output" class="output-box">
+                Permissions will be displayed here.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Loops Section -->
+        <section id="loops" class="content-section">
+          <h2 class="text-3xl font-bold text-sky-400 mb-6">
+            Module 1: Automating Repetition
+          </h2>
+          <div class="card">
+            <h3 class="text-xl font-semibold mb-4 text-white">
+              `for` Loop Execution Visualizer
+            </h3>
+            <p class="text-slate-400 mb-4">
+              Set the number of iterations and press "Run" to see a step-by-step
+              trace of how a `for` loop executes.
+            </p>
+            <div class="flex items-center space-x-4">
+              <label for="loop-count">Loop `i < `</label>
+              <input
+                id="loop-count"
+                type="number"
+                value="5"
+                min="1"
+                max="20"
+                class="w-24 bg-slate-700 p-2 rounded-md border border-slate-600 focus:ring-2 focus:ring-sky-500 focus:outline-none"
+              />
+              <button id="loop-btn" class="btn">Run Loop</button>
+            </div>
+            <div id="loop-output" class="output-box"></div>
+          </div>
+        </section>
+
+        <!-- Functions Section -->
+        <section id="functions" class="content-section">
+          <h2 class="text-3xl font-bold text-sky-400 mb-6">
+            Module 2: The Art of Reusability
+          </h2>
+          <div class="card">
+            <h3 class="text-xl font-semibold mb-4 text-white">
+              Hoisting: Declaration vs. Expression
+            </h3>
+            <p class="text-slate-400 mb-4">
+              Click the buttons to see why a function declaration can be called
+              *before* it's defined, but a function expression cannot. This
+              demonstrates "hoisting."
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p class="font-semibold">Function Declaration</p>
+                <div class="interactive-code">
+                  callDeclaredFunction();<br /><br />
+                  function callDeclaredFunction() {<br />
+                  &nbsp;&nbsp;return "I was hoisted!";<br />
+                  }
+                </div>
+                <button id="hoist-declaration-btn" class="btn mt-2">
+                  Run Code
+                </button>
+                <div id="hoist-declaration-output" class="output-box"></div>
+              </div>
+              <div>
+                <p class="font-semibold">Function Expression</p>
+                <div class="interactive-code">
+                  try {<br />
+                  &nbsp;&nbsp;callExpressedFunction();<br />
+                  } catch (e) {<br />
+                  &nbsp;&nbsp;return e.name;<br />
+                  }<br /><br />
+                  const callExpressedFunction = () => {<br />
+                  &nbsp;&nbsp;return "I was not hoisted!";<br />
+                  };
+                </div>
+                <button id="hoist-expression-btn" class="btn mt-2">
+                  Run Code
+                </button>
+                <div id="hoist-expression-output" class="output-box"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Data Structures Section -->
+        <section id="data-structures" class="content-section">
+          <h2 class="text-3xl font-bold text-sky-400 mb-6">
+            Module 3: Architecting Data
+          </h2>
+          <div class="card">
+            <h3 class="text-xl font-semibold mb-4 text-white">
+              Interactive Array Playground
+            </h3>
+            <p class="text-slate-400 mb-4">
+              Use the buttons to manipulate the array. This demonstrates how
+              common array methods work.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <input
+                id="array-input"
+                class="bg-slate-700 p-2 rounded-md border border-slate-600 focus:ring-2 focus:ring-sky-500 focus:outline-none"
+                placeholder="Item to add"
+              />
+              <button class="btn" id="array-push-btn">push()</button>
+              <button class="btn" id="array-unshift-btn">unshift()</button>
+              <button
+                class="btn bg-red-600 hover:bg-red-700"
+                id="array-pop-btn"
+              >
+                pop()
+              </button>
+              <button
+                class="btn bg-red-600 hover:bg-red-700"
+                id="array-shift-btn"
+              >
+                shift()
+              </button>
+            </div>
+            <div class="output-box" id="array-output">
+              ['Alex', 'Jane', 'Peter']
+            </div>
+            <div
+              class="output-box text-yellow-300"
+              id="array-method-output"
+            ></div>
+          </div>
+        </section>
+
+        <!-- Assignment Section -->
+        <section id="assignment" class="content-section">
+          <h2 class="text-3xl font-bold text-sky-400 mb-6">
+            Module 4: Take-Home Assignment
+          </h2>
+          <div
+            class="card prose prose-invert prose-p:text-slate-300 prose-li:text-slate-300 max-w-none"
+          >
+            <h3 class="text-xl font-semibold text-white">
+              The To-Do List Manager
+            </h3>
+            <p>
+              <strong>Objective:</strong> To build a complete mini-application
+              using arrays, objects, functions, and loops. This is a significant
+              step towards building real applications.
+            </p>
+
+            <h4>1. Setup</h4>
+            <p>Create a file <code>todo.js</code>.</p>
+
+            <h4>2. The Data Structure</h4>
+            <p>
+              Your to-do list will be stored in an array of objects. Each object
+              will represent a single task.
+            </p>
+            <pre><code class="language-javascript">const todoList = [
+    { id: 1, task: 'Buy groceries', completed: false },
+    { id: 2, task: 'Finish Week 4 assignment', completed: true }
+];
+let nextId = 3;</code></pre>
+
+            <h4>3. The Functions</h4>
+            <ul>
+              <li>
+                <strong><code>displayTasks()</code>:</strong> Loops through the
+                <code>todoList</code> and prints each task to the console,
+                indicating if it's complete (e.g.,
+                <code>"[x] Buy groceries"</code>).
+              </li>
+              <li>
+                <strong><code>addTask(taskText)</code>:</strong> Creates a new
+                task object, adds it to the <code>todoList</code>, and
+                increments `nextId`.
+              </li>
+              <li>
+                <strong><code>markTaskComplete(taskId)</code>:</strong> Finds
+                the task with the matching `id` and changes its `completed`
+                status to `true`.
+              </li>
+            </ul>
+
+            <h4>4. Bonus Challenge</h4>
+            <p>
+              Create a function <code>deleteTask(taskId)</code> that removes a
+              task object from the array based on its `id`. This will require
+              you to research array methods like <code>findIndex()</code> and
+              <code>splice()</code>.
+            </p>
+
+            <h4>5. Submission</h4>
+            <p>
+              Submit your <code>todo.js</code> file via a Pull Request to your
+              personal assignments repository, following the professional
+              branching workflow.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const navLinks = document.querySelectorAll(".nav-link");
+        const contentSections = document.querySelectorAll(".content-section");
+
+        function navigateTo(targetId) {
+          contentSections.forEach((section) => {
+            section.classList.remove("active");
+          });
+          document.getElementById(targetId).classList.add("active");
+
+          navLinks.forEach((link) => {
+            link.classList.toggle("active", link.dataset.target === targetId);
+          });
+
+          // Update URL hash without jumping
+          if (history.pushState) {
+            history.pushState(null, null, "#" + targetId);
+          } else {
+            location.hash = "#" + targetId;
+          }
+        }
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            navigateTo(link.dataset.target);
+          });
+        });
+
+        // Handle initial page load with hash
+        const initialTarget = window.location.hash.substring(1) || "intro";
+        if (document.getElementById(initialTarget)) {
+          navigateTo(initialTarget);
+        }
+
+        // --- Interactive Logic ---
+
+        // M0: Conditionals
+        const truthyInput = document.getElementById("truthy-input");
+        const truthyBtn = document.getElementById("truthy-btn");
+        const truthyOutput = document.getElementById("truthy-output");
+
+        truthyBtn.addEventListener("click", () => {
+          let value;
+          const input = truthyInput.value.trim();
+          try {
+            // A safe-ish way to evaluate common JS literals
+            if (input === "null") value = null;
+            else if (input === "undefined") value = undefined;
+            else if (input === "NaN") value = NaN;
+            else if (input === "true") value = true;
+            else if (input === "false") value = false;
+            else if (input.startsWith("[") || input.startsWith("{"))
+              value = JSON.parse(input);
+            else if (
+              !isNaN(parseFloat(input)) &&
+              isFinite(input) &&
+              input !== ""
+            )
+              value = parseFloat(input);
+            else value = input; // Treat as string
+          } catch (e) {
+            value = input; // Fallback to the string itself
+          }
+
+          if (value) {
+            truthyOutput.textContent = `The value is Truthy.`;
+            truthyOutput.style.color = "#67e8f9"; // sky-300
+          } else {
+            truthyOutput.textContent = `The value is Falsy.`;
+            truthyOutput.style.color = "#fca5a5"; // red-300
+          }
+        });
+
+        const switchSelect = document.getElementById("switch-select");
+        const switchOutput = document.getElementById("switch-output");
+
+        switchSelect.addEventListener("change", () => {
+          const userRole = switchSelect.value;
+          let outputMessage = "";
+          switch (userRole) {
+            case "admin":
+              outputMessage += "Full access granted.\n";
+            case "editor":
+              outputMessage += "Content writing access granted.\n";
+              break;
+            case "viewer":
+              outputMessage += "View-only access granted.\n";
+              break;
+            default:
+              outputMessage += "Guest access only.";
+          }
+          switchOutput.textContent = outputMessage;
+        });
+        switchSelect.dispatchEvent(new Event("change")); // Initial run
+
+        // M1: Loops
+        const loopCountInput = document.getElementById("loop-count");
+        const loopBtn = document.getElementById("loop-btn");
+        const loopOutput = document.getElementById("loop-output");
+
+        loopBtn.addEventListener("click", () => {
+          const count = parseInt(loopCountInput.value, 10);
+          loopOutput.textContent = "";
+          let i = 0;
+
+          function runIteration() {
+            if (i < count) {
+              loopOutput.textContent += `i is ${i}. Condition (${i} < ${count}) is true. Running block...\n`;
+              i++;
+              setTimeout(runIteration, 300);
+            } else {
+              loopOutput.textContent += `i is ${i}. Condition (${i} < ${count}) is false. Loop terminates.`;
+            }
+          }
+          runIteration();
+        });
+
+        // M2: Functions
+        document
+          .getElementById("hoist-declaration-btn")
+          .addEventListener("click", () => {
+            document.getElementById("hoist-declaration-output").textContent =
+              "I was hoisted!";
+          });
+
+        document
+          .getElementById("hoist-expression-btn")
+          .addEventListener("click", () => {
+            document.getElementById("hoist-expression-output").textContent =
+              "ReferenceError";
+          });
+
+        // M3: Data Structures
+        const arrayInput = document.getElementById("array-input");
+        const arrayOutput = document.getElementById("array-output");
+        const arrayMethodOutput = document.getElementById(
+          "array-method-output",
+        );
+        let playgroundArray = ["Alex", "Jane", "Peter"];
+
+        function updateArrayDisplay() {
+          arrayOutput.textContent = `[${playgroundArray.map((item) => `'${item}'`).join(", ")}]`;
+        }
+
+        document
+          .getElementById("array-push-btn")
+          .addEventListener("click", () => {
+            const value = arrayInput.value.trim();
+            if (value) {
+              playgroundArray.push(value);
+              arrayMethodOutput.textContent = `Pushed '${value}'.`;
+              arrayInput.value = "";
+              updateArrayDisplay();
+            }
+          });
+        document
+          .getElementById("array-unshift-btn")
+          .addEventListener("click", () => {
+            const value = arrayInput.value.trim();
+            if (value) {
+              playgroundArray.unshift(value);
+              arrayMethodOutput.textContent = `Unshifted '${value}'.`;
+              arrayInput.value = "";
+              updateArrayDisplay();
+            }
+          });
+        document
+          .getElementById("array-pop-btn")
+          .addEventListener("click", () => {
+            if (playgroundArray.length > 0) {
+              const popped = playgroundArray.pop();
+              arrayMethodOutput.textContent = `Popped '${popped}'.`;
+              updateArrayDisplay();
+            } else {
+              arrayMethodOutput.textContent = "Array is empty.";
+            }
+          });
+        document
+          .getElementById("array-shift-btn")
+          .addEventListener("click", () => {
+            if (playgroundArray.length > 0) {
+              const shifted = playgroundArray.shift();
+              arrayMethodOutput.textContent = `Shifted '${shifted}'.`;
+              updateArrayDisplay();
+            } else {
+              arrayMethodOutput.textContent = "Array is empty.";
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
