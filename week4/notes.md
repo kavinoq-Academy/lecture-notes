@@ -203,25 +203,28 @@ Functions allow us to package logic into reusable, named blocks. They are the si
 There are two primary ways to create a function. The difference is subtle but important.
 
 * **Function Declaration:**
-```javascript
-// Hoisted: Can be called before it's defined in the code.
-console.log(add(5, 10)); // 15
-
-function add(a, b) {
-  return a + b;
-}
-```
-Declarations are "hoisted" to the top of their scope by the JavaScript interpreter, meaning you can call them before they appear in your code.
+    
+    ```javascript
+    // Hoisted: Can be called before it's defined in the code.
+    console.log(add(5, 10)); // 15
+    
+    function add(a, b) {
+        return a + b;
+    }
+    ```
+    Declarations are "hoisted" to the top of their scope by the JavaScript interpreter, meaning you can call them before they appear in your code.
 
 * Function Expression: (Assigning an anonymous function to a variable)
-```javascript
-// Not Hoisted: Must be defined before it is called.
-// console.log(subtract(10, 5)); // This would cause a ReferenceError!
 
-const subtract = function(a, b) {
-  return a - b;
-};
-```
+    ```javascript
+    // Not Hoisted: Must be defined before it is called.
+    // console.log(subtract(10, 5)); // This would cause a ReferenceError!
+    
+    const subtract = function(a, b) {
+        return a - b;
+    };
+    ```
+    
 Modern best practice, especially with `const`, is to use function expressions (or arrow functions) to prevent issues related to hoisting and to enforce a more linear, top-to-bottom code readability.
 
 ##### The Concept of Pure Functions
@@ -229,17 +232,20 @@ Modern best practice, especially with `const`, is to use function expressions (o
 A "pure function" is a function that, given the same input, **will always return the same output** and has **no side effects**. A side effect is any interaction with the outside world from within the function (e.g., changing a global variable, writing to the console, making a network request).
 
 * Pure Function:
-```javascript
-const calculatePrice = (base, taxRate) => base * (1 + taxRate);
-```
+
+    ```javascript
+    const calculatePrice = (base, taxRate) => base * (1 + taxRate);
+    ```
+
 * Impure Function (has a side effect):
-```javascript
-let totalSales = 0;
-function addToTotal(amount) {
-  totalSales += amount; // Side effect: modifies a variable outside itself.
-  return totalSales;
-}
-```
+
+    ```javascript
+    let totalSales = 0;
+    function addToTotal(amount) {
+        totalSales += amount; // Side effect: modifies a variable outside itself.
+        return totalSales;
+    }
+    ```
 
 Striving to write pure functions makes your code more predictable, easier to test, and less prone to bugs.
 
@@ -250,15 +256,17 @@ Striving to write pure functions makes your code more predictable, easier to tes
 An array is more than just a list; it's a powerful object with built-in properties and methods.
 
 * `length` **Property:** Not a method! It's a property that tells you how many elements are in the array.
-```javascript
-const team = ['Alex', 'Jane', 'Peter'];
-console.log(team.length); // 3
-```
+
+    ```javascript
+    const team = ['Alex', 'Jane', 'Peter'];
+    console.log(team.length); // 3
+    ```
+
 * **Essential Methods (Actions that modify the array):**
-  * `push(item)`: Adds an item to the **end**.
-  * `pop()`: Removes (and returns) the item from the **end**.
-  * `unshift(item)`: Adds an item to the **beginning**.
-  * `shift()`: Removes (and returns) the item from the **beginning**.
+  * **`push(item)`:** Adds an item to the **end**.
+  * **`pop()`:** Removes (and returns) the item from the **end**.
+  * **`unshift(item)`:** Adds an item to the **beginning**.
+  * **`shift()`:** Removes (and returns) the item from the **beginning**.
 
 ##### Objects: The Building Blocks of Models
 
@@ -305,33 +313,38 @@ console.log(myCar[propertyToAccess]); // 'Camry'
 
 1. **Setup:** Create a file `todo.js`.
 2. **The Data Structure:** Your to-do list will be stored in an array of objects. Each object will represent a single task.
-```javascript
-const todoList = [
-    { id: 1, task: 'Buy groceries', completed: false },
-    { id: 2, task: 'Finish Week 4 assignment', completed: true }
-];
-let nextId = 3;
-```
+
+    ```javascript
+    const todoList = [
+        { id: 1, task: 'Buy groceries', completed: false },
+        { id: 2, task: 'Finish Week 4 assignment', completed: true }
+    ];
+    
+    let nextId = 3;
+    ```
+
 3. **The Functions:**
-  * `displayTasks()`: A function that takes no arguments. It should loop through the `todoList` array and print each task to the console, indicating whether it's complete or not (e.g., `"[x] Buy groceries"` or `"[ ] Clean room"`).
-  * `addTask(taskText)`: A function that takes a string as an argument. It should create a new task object (with a unique `id`, the provided `taskText`, and `completed: false`), add it to the `todoList` array, and increment the `nextId` counter.
-  * `markTaskComplete(taskId)`: A function that takes a number (an `id`) as an argument. It should find the task object in the array with the matching `id` and change its `completed` status to `true`.
+  * **`displayTasks()`:** A function that takes no arguments. It should loop through the `todoList` array and print each task to the console, indicating whether it's complete or not (e.g., `"[x] Buy groceries"` or `"[ ] Clean room"`).
+  * **`addTask(taskText)`:** A function that takes a string as an argument. It should create a new task object (with a unique `id`, the provided `taskText`, and `completed: false`), add it to the `todoList` array, and increment the `nextId` counter.
+  * **`markTaskComplete(taskId)`:** A function that takes a number (an `id`) as an argument. It should find the task object in the array with the matching `id` and change its `completed` status to `true`.
 4. **The Simulation:** At the bottom of your file, write code to simulate using your application:
-```javascript
-console.log("--- Initial To-Do List ---");
-displayTasks();
 
-console.log("\n--- Adding New Tasks ---");
-addTask("Clean the kitchen");
-addTask("Read a chapter of a book");
-displayTasks();
+    ```javascript
+    console.log("--- Initial To-Do List ---");
+    displayTasks();
+    
+    console.log("\n--- Adding New Tasks ---");
+    addTask("Clean the kitchen");
+    addTask("Read a chapter of a book");
+    displayTasks();
+    
+    console.log("\n--- Completing a Task ---");
+    markTaskComplete(1); // Mark 'Buy groceries' as complete
+    displayTasks();
+    ```
 
-console.log("\n--- Completing a Task ---");
-markTaskComplete(1); // Mark 'Buy groceries' as complete
-displayTasks();
-```
 5. **Bonus Challenge:** Create a function `deleteTask(taskId)` that removes a task object from the array based on its `id`. This is more complex and will require you to research array methods like `findIndex()` and `splice()`.
-6. **Submission:** Submit your `todo.js file via a Pull Request to your personal assignments repository, following the professional branching workflow we learned in Week 2.
+6. **Submission:** Submit your `todo.js` file via a Pull Request to your personal assignments repository, following the professional branching workflow we learned in Week 2.
 
 
 
