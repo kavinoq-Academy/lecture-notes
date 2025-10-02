@@ -1,6 +1,6 @@
 # Month 1, Week 3: Accompanying Lesson Notes
 
-## The Art of Instruction: An Introduction to Programming
+### The Art of Instruction: An Introduction to Programming
 
 **Purpose of this Document:** This document is designed to be a detailed companion to the Week 3 lecture. While the slides provide a visual, high-level overview, these notes will dive deeper into the core concepts, offer alternative analogies, and provide the "why" behind the "what." Use this as your primary study guide after the lecture to solidify your mental models of how programming works.
 
@@ -51,157 +51,171 @@ The lecture showed you three places to run JavaScript. Let's explore why they ar
 - Read and write files on your computer (`fs` module).
 - Create a web server (`http` module).
 - Connect to a database.
-  This is the core reason Node.js is used for backend development.
+  This is the core reason **Node.js** is used for backend development.
 
 ### Module 3: The Nature of Data
 
 Data isn't just "information"; it's information categorized into specific types. The type of data determines what you can do with it. You can do math with a Number, but you can't do math with a String.
 
-Deeper Dive: Strings
-A useful mental model for a String is to think of it as a sequence of characters in a specific order, where each character has an address (an index). The first character is always at index 0.
+#### Deeper Dive: Strings
 
-In the string 'Hello':
+A useful mental model for a String is to think of it as a sequence of characters in a specific order, where each character has an address (an `index`). The first character is always at index `0`.
 
-H is at index 0
+In the string Hello':
 
-e is at index 1
+* `H` is at index `0`
+* `e` is at index `1`
+* `l` is at index `2`
+* `l` is at index `3`
+* `o` is at index `4`
 
-l is at index 2
+This concept of indexed positions will become incredibly important when we start working with `arrays` and `loops`.
 
-l is at index 3
+#### Deeper Dive: `undefined` vs. `null`
 
-o is at index 4
-
-This concept of indexed positions will become incredibly important when we start working with arrays and loops.
-
-Deeper Dive: undefined vs. null
 Let's use a different analogy to solidify this. Imagine a form with an optional "Middle Name" field.
 
-If a user is created and they simply don't fill out the middle name field, the value for middleName in your program would be undefined. No one ever assigned anything to it. It's empty by default.
+If a user is created and they simply don't fill out the middle name field, the value for `middleName` in your program would be `undefined`. No one ever assigned anything to it. It's *`empty`* by default.
 
-If a user is asked for their middle name and they explicitly check a box that says "I do not have a middle name," you, the programmer, might set the value to null. You are making an intentional, explicit statement: "The value for this field is confirmed to be empty."
+If a user is asked for their middle name and they explicitly check a box that says "I do not have a middle name," you, the programmer, might set the value to `null`. You are making an intentional, explicit statement: "The value for this field is confirmed to be empty."
 
-In summary: undefined is passive emptiness. null is active, intentional emptiness.
+**In summary:** `undefined` is passive emptiness. `null` is active, intentional emptiness.
 
-Module 4: Variables - Named Pointers to Memory
+### Module 4: Variables - Named Pointers to Memory
+
 The "Labeled Jars" analogy is excellent for starting out. A more technically accurate mental model is to think of a variable as a named pointer to a location in the computer's memory.
 
-When you write let myAge = 30;, here's what happens:
+When you write `let myAge = 30;`, here's what happens:
+* The JavaScript engine finds an empty spot in the computer's memory.
+* It stores the value `30` in that memory spot.
+* It creates a label, `myAge`, and makes that label ***point*** to that specific memory address.
 
-The JavaScript engine finds an empty spot in the computer's memory.
+When you later use `myAge` in your code (e.g., `console.log(myAge)`), the engine looks up the label `myAge`, follows the pointer to the memory address, retrieves the value it finds there (`30`), and uses it.
 
-It stores the value 30 in that memory spot.
+#### Why `const` is Your Best Friend: Signaling Intent
 
-It creates a label, myAge, and makes that label "point" to that specific memory address.
+The lecture stated the rule: **Default to const**. Let's explore the deeper why.
 
-When you later use myAge in your code (e.g., console.log(myAge)), the engine looks up the label myAge, follows the pointer to the memory address, retrieves the value it finds there (30), and uses it.
-
-Why const is Your Best Friend: Signaling Intent
-The lecture stated the rule: "Default to const." Let's explore the deeper why.
-
-Using const is not just about preventing errors. It is a powerful form of communication to other developers (and your future self). When another developer reads your code and sees a variable declared with const, they instantly know:
+Using `const` is not just about preventing errors. It is a powerful form of communication to other developers (and your future self). When another developer reads your code and sees a variable declared with `const`, they instantly know:
 
 "The value of this variable will never be reassigned. I do not need to track it or worry about it changing unexpectedly later in this file."
 
-This dramatically reduces the cognitive load of reading and understanding code. It makes your programs more predictable, less buggy, and easier to reason about. Using let signals, "Be aware, this value might change." Using const signals, "This value is stable and reliable."
+This dramatically reduces the cognitive load of reading and understanding code. It makes your programs more predictable, less buggy, and easier to reason about. Using `let` signals, "Be aware, this value might change." Using `const` signals, "This value is stable and reliable."
 
-Module 5 & 6: The Flow of Logic
-Redirecting the River
+### Module 5 & 6: The Flow of Logic
+
+#### Redirecting the River
+
 A program, by default, is like a river that flows straight from the first line at the top to the last line at the bottom.
 
-Control Flow Statements like if / else if / else are like dams and gates on that river. They allow us to test conditions and redirect the flow of execution down different paths. An if statement is a gate that only opens if a certain condition is true, allowing the flow to enter that block of code.
+Control Flow Statements like `if / else if / else` are like dams and gates on that river. They allow us to test conditions and redirect the flow of execution down different paths. An `if` statement is a gate that only opens if a certain condition is `true`, allowing the flow to enter that block of code.
 
-A Glimpse Ahead: "Truthy" and "Falsy"
-In the lecture, we learned that if statements check for the boolean value true. In practice, JavaScript has a concept of "truthy" and "falsy" values. This is a powerful shortcut.
+#### A Glimpse Ahead: "Truthy" and "Falsy"
 
-Certain values, when used in a condition, "behave like" false. These are the falsy values:
+In the lecture, we learned that `if` statements check for the boolean value `true`. In practice, JavaScript has a concept of **`truthy`** and **`falsy`** values. This is a powerful shortcut.
 
-false
+Certain values, when used in a condition, "behave like" `false`. These are the **`falsy`** values:
+* `false`
+* `0`
+* `''` (an empty string)
+* `null`
+* `undefined`
+* `NaN` (Not a Number)
 
-0
+Almost every other value in JavaScript is **`truthy`** (behaves like true), including all non-empty strings, all numbers other than `0`, `arrays`, and `objects`.
 
-'' (an empty string)
+Why is this useful? Instead of writing `if (username !== '')`, you can simply write `if (username)`. If the `username` string is empty, it will be treated as **`falsy`** and the condition will fail. This is a more concise style you will see frequently. We will explore this more later, but it is a valuable piece of complementary knowledge.
 
-null
+### Assignments
 
-undefined
-
-NaN (Not a Number)
-
-Almost every other value in JavaScript is "truthy" (behaves like true), including all non-empty strings, all numbers other than 0, arrays, and objects.
-
-Why is this useful? Instead of writing if (username !== ''), you can simply write if (username). If the username string is empty, it will be treated as falsy and the condition will fail. This is a more concise style you will see frequently. We will explore this more later, but it is a valuable piece of complementary knowledge.
-
-Assignments
 (The in-class and take-home assignments are reproduced here for completeness, as they are the practical application of the concepts discussed in these notes.)
 
-In-Class Exercise: The Terminal Adventure Game
-Create a file named adventure.js and run it using node adventure.js. This exercise is designed to give you hands-on practice with variables, data types, operators, and if/else logic.
+#### In-Class Exercise: The Terminal Adventure Game
 
-Character Setup:
+Create a file named `adventure.js` and run it using `node adventure.js`. This exercise is designed to give you hands-on practice with variables, data types, operators, and `if/else` logic.
 
-const characterName = 'Alex';
-let health = 100;
-const hasTorch = true;
+1. **Character Setup:**
 
-The First Choice:
+    ```JavaScript
+    const characterName = 'Alex';
+    let health = 100;
+    const hasTorch = true;
+    ```
 
-const choice = 'enter'; // Try changing to 'wait' later
+2. **The First Choice:**
 
-The First if/else Block:
+    ```JavaScript
+    const choice = 'enter'; // Try changing to 'wait' later
+    ```
 
-if (choice === 'enter') {
-console.log(characterName + ' enters the dark cave...');
-if (hasTorch === true) {
-console.log('The path is lit by the torch!');
-} else {
-console.log('It is pitch black... You stumble and lose 20 health.');
-health = health - 20;
-}
-} else {
-console.log(characterName + ' decides to wait outside.');
-}
+3. **The First `if/else` Block:**
 
-The Second Choice & Block:
+    ```JavaScript
+    if (choice === 'enter') {
+        console.log(characterName + ' enters the dark cave...');
+    
+        if (hasTorch === true) {
+            console.log('The path is lit by the torch!');
+        } else {
+            console.log('It is pitch black... You stumble and lose 20 health.');
+            health = health - 20;
+        }
+    } else {
+        console.log(characterName + ' decides to wait outside.');
+    }
+    ```
 
-const action = 'fight'; // Try 'flee' later
-console.log('A goblin appears!');
+4. **The Second Choice & Block:**
 
-if (action === 'fight' && health > 20) {
-console.log('You bravely fight the goblin and win!');
-} else if (action === 'fight' && health <= 20) {
-console.log('You are too weak to fight. The goblin defeats you.');
-} else {
-console.log('You wisely flee back to the cave entrance.');
-}
+    ```JavaScript
+    const action = 'fight'; // Try 'flee' later
+    console.log('A goblin appears!');
 
-Final Output:
+    if (action === 'fight' && health > 20) {
+        console.log('You bravely fight the goblin and win!');
+    } else if (action === 'fight' && health <= 20) {
+        console.log('You are too weak to fight. The goblin defeats you.');
+    } else {
+        console.log('You wisely flee back to the cave entrance.');
+    }
+    ```
 
-console.log('End of adventure. Final health: ' + health);
+5. **Final Output:**
 
-Take-Home Assignment: The Universal Translator
-Create a file named translator.js. This assignment will solidify your understanding of using conditional logic to produce different outputs based on an input variable.
+    ```JavaScript
+    console.log('End of adventure. Final health: ' + health);
+    ```
 
-Setup:
+#### Take-Home Assignment: The Universal Translator
 
-const languageCode = 'es'; // Change this to 'fr', 'de', 'en', etc. to test
-let greeting; // We will assign this in the logic block
+Create a file named `translator.js`. This assignment will solidify your understanding of using conditional logic to produce different outputs based on an input variable.
 
-The Logic: Write an if / else if / else block to check the value of languageCode.
+1. **Setup:**
 
-if (languageCode === 'es') {
-greeting = 'Hola, Mundo';
-} else if (languageCode === 'fr') {
-greeting = 'Bonjour, le monde';
-} else if (languageCode === 'de') {
-greeting = 'Hallo, Welt';
-} else {
-// A default case for any other language, including English
-greeting = 'Hello, World';
-}
+    ```JavaScript
+    const languageCode = 'es'; // Change this to 'fr', 'de', 'en', etc. to test
+    let greeting; // We will assign this in the logic block
+    ```
 
-The Output: At the end of the file, print the final result.
+2. **The Logic:** Write an `if / else if / else` block to check the value of `languageCode`.
 
-console.log(greeting);
+    ```JavaScript
+    if (languageCode === 'es') {
+        greeting = 'Hola, Mundo';
+    } else if (languageCode === 'fr') {
+        greeting = 'Bonjour, le monde';
+    } else if (languageCode === 'de') {
+        greeting = 'Hallo, Welt';
+    } else {
+        // A default case for any other language, including English
+        greeting = 'Hello, World';
+    }
+    ```
 
-Submission: Submit your translator.js file via a Pull Request to your personal assignments repository, following the branching workflow we learned last week.
+3. **The Output:** At the end of the file, print the final result.
+
+    ```JavaScript
+    console.log(greeting);
+    ```
+
+4. **Submission:** Submit your `translator.js` file via a Pull Request to your personal assignments repository, following the branching workflow we learned last week.
